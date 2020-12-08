@@ -1,0 +1,296 @@
+/****************MISION 1***********************/
+#mision1{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+#carro1-m1,#carro2-m1,#carro3-m1,#carro4-m1{
+	position: absolute;
+	width: 27px;
+	height: 49px;
+	margin: 0px;
+	padding: 0px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+#carro1-m1{background-image: url(../images/peaton/mision1/carro1.png);}
+#carro2-m1{background-image: url(../images/peaton/mision1/carro2.png);}
+#carro3-m1{background-image: url(../images/peaton/mision1/carro3.png);}
+#carro4-m1{background-image: url(../images/peaton/mision1/carro4.png);}
+
+.carro-m1-chocado{
+	transform: rotate(-10deg);
+	-webkit-transform: rotate(-10deg);
+	-o-transform: rotate(-10deg);
+}
+
+#semaforo-mision-1{
+	position: absolute;
+	width: 76px;
+	height: 12px;
+	top: 302px;
+	left: 758px;
+	margin: 0px;
+	padding: 0px;
+}
+#semaforo-mision-1::after{
+	content: "";
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	background-image: url(../images/peaton/mision1/semaforo.svg);
+}
+#semaforo-green,
+#semaforo-yellow,
+#semaforo-red{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	box-sizing: border-box;
+	border-radius: 50%;
+	top: 0%;
+	top: calc(0px - 9px);
+	top: -moz-calc(0px - 9px);
+	transform: scale(1,0.7);
+	-webkit-transform: scale(1,0.7);
+	-o-transform: scale(1,0.7);
+}
+#semaforo-green{
+	left: 4.5px;
+}
+#semaforo-yellow{
+	left: 50%;
+	left: calc(50% - 10px);
+	left: -moz-calc(50% - 10px);
+}
+#semaforo-red{
+	left: 100%;
+	left: calc(100% - 25px);
+	left: -moz-calc(100% - 25px);
+}
+
+.semaforo-start #semaforo-green,
+.semaforo-start #semaforo-yellow,
+.semaforo-start #semaforo-red{
+	animation-duration: 4s;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+	-webkit-animation-duration: 4s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: 1;
+}
+.semaforo-start #semaforo-green{
+	animation-name: animacion-semaforo-green-1;
+	-webkit-animation-name: animacion-semaforo-green-1;
+}
+.semaforo-start #semaforo-yellow{
+	animation-name: animacion-semaforo-yellow-1;
+	-webkit-animation-name: animacion-semaforo-yellow-1;
+}
+.semaforo-start #semaforo-red{
+	animation-name: animacion-semaforo-red-1;
+	-webkit-animation-name: animacion-semaforo-red-1;
+}
+@keyframes animacion-semaforo-green-1{
+	0%{
+		background-color: #12B112;
+		filter: blur(2px);
+		-webkit-filter: blur(2px);
+		-o-filter: blur(2px);
+	}
+	58%{
+		background-color: #12B112;
+		filter: blur(2px);
+		-webkit-filter: blur(2px);
+		-o-filter: blur(2px);
+	}
+	60%{
+		background-color: #cccccc;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+	100%{
+		background-color: #cccccc;	
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+}
+@keyframes animacion-semaforo-yellow-1{
+	0%{
+		background-color: #cccccc;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+	58%{
+		background-color: #cccccc;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+	60%{
+		background-color: #FFB100;
+		filter: blur(2px);
+		-webkit-filter: blur(2px);
+		-o-filter: blur(2px);
+	}
+	70%{
+		background-color: #FFB100;
+		filter: blur(2px);
+		-webkit-filter: blur(2px);
+		-o-filter: blur(2px);
+	}
+	72%{
+		background-color: #cccccc;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+	74%{
+		background-color: #FFB100;
+		filter: blur(2px);
+		-webkit-filter: blur(2px);
+		-o-filter: blur(2px);
+	}
+	76%{
+		background-color: #cccccc;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+	78%{
+		background-color: #FFB100;
+		filter: blur(2px);
+		-webkit-filter: blur(2px);
+		-o-filter: blur(2px);
+	}
+	80%{
+		background-color: #cccccc;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+	100%{
+		background-color: #cccccc;	
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+}
+@keyframes animacion-semaforo-red-1{
+	0%{
+		background-color: #cccccc;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+	78%{
+		background-color: #cccccc;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+	80%{
+		background-color: #E21212;
+		filter: blur(2px);
+		-webkit-filter: blur(2px);
+		-o-filter: blur(2px);
+	}
+	98%{
+		background-color: #E21212;
+		filter: blur(2px);
+		-webkit-filter: blur(2px);
+		-o-filter: blur(2px);
+	}
+	100%{
+		background-color: #cccccc;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+}
+
+.semaforo-stop #semaforo-green,
+.semaforo-stop #semaforo-yellow,
+.semaforo-stop #semaforo-red{
+	background-color: #cccccc;
+	animation: none;
+	-webkit-animation: none;
+}
+
+#punto-mision-1{
+	left: 711px;
+	top: 437px;
+}
+
+#luz-mision-1{
+	top: 432px;
+    left: 703px;
+}
+#flecha-mision-1{
+	top: 427px;
+	left: 678px;
+	transform-origin: 100% center;
+	-webkit-transform-origin: 100% center;
+	-o-transform-origin: 100% center;
+
+	animation-name: flecha-animacion;
+	-webkit-animation-name: flecha-animacion;
+}
+
+.avatar-dead-1 #avatar-clip{
+    visibility: hidden;
+}
+.avatar-dead-1 #avatar-atropeyado{
+    visibility: inherit !important;
+    animation-name: animacion-atropeya;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    -webkit-animation-name: animacion-atropeya;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: ease-out;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes animacion-atropeya{
+    0%{
+		top: 0px;
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-o-transform: scale(1);
+	}
+	60%{
+		top: 60px;
+		transform: scale(1.8);
+		-webkit-transform: scale(1.8);
+		-o-transform: scale(1.8);
+	}
+    80%{
+		top: 80px;
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-o-transform: scale(1);
+	}
+	95%{
+		top: 95px;
+		transform: scale(1.2);
+		-webkit-transform: scale(1.2);
+		-o-transform: scale(1.2);
+	}
+	100%{
+		top: 100px;
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-o-transform: scale(1);
+	}
+}

@@ -1,0 +1,101 @@
+/**************MISIONES*************/
+
+#misiones{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	display: none;
+}
+
+.flecha{
+	position: absolute;
+	width: 45px;
+	height: 40px;
+	top: 427px;
+	left: 678px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url(../images/peaton/mision1/flecha-1.svg);
+	
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	
+	-webkit-animation-duration: 0.8s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+
+	filter: drop-shadow(0px 0px 3px rgba(0,0,0,0.6));
+	-webkit-filter: drop-shadow(0px 0px 3px rgba(0,0,0,0.6));
+	-o-filter: drop-shadow(0px 0px 3px rgba(0,0,0,0.6));
+}
+
+@keyframes flecha-animacion{
+	0%{
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-o-transform: scale(1);
+	}
+	40%{
+		transform: scale(1.2);
+		-webkit-transform: scale(1.2);
+		-o-transform: scale(1.2);
+	}
+	80%{
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-o-transform: scale(1);
+	}
+	100%{
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-o-transform: scale(1);
+	}
+}
+
+.icono-punto{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background-color: rgba(255,0,0,0.5);
+}
+
+.icono-luz{background-color: #FFFFFF;}
+.icono-luz{
+    position: absolute;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+
+    animation-name: animacion-light;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-name: animacion-light;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+@keyframes animacion-light{
+    0% {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+        -o-transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        opacity: 0.75;
+    }
+    100% {
+        transform: scale(2.5);
+        -webkit-transform: scale(2.5);
+        -o-transform: scale(2.5);
+        opacity: 0;
+    }
+}

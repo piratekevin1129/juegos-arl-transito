@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    
+    <!--Estilos propios-->
+    <link href="assets/css/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/master.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/instrucciones.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/peaton.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/mision1.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/mision2.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+
+    <!--Libreria spider-->
+    <link rel="stylesheet" type="text/css" href="assets/spider/sprites/sprite.css" />
+    <link rel="stylesheet" type="text/css" href="assets/spider/sprites/fotograma.css" />
+    <title>Tránsito</title>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <div class="row row-header1">
+                <div class="logo-sura">
+                </div>
+                <div class="titulo">
+                    <h1><span>Módulos Interactivos:</span> Prevención de Riesgos</h1>
+                </div>
+            </div>
+            <div class="row row-header2">
+                <div class="logo-arl"></div>
+                <div id="oficio-title">
+                    <h2 id="oficio-title-txt"></h2>
+                </div>
+            </div>
+        </header>
+
+        <div id="game">
+            <div id="game-scene">
+                <div id="piso-container-2">
+                    <div id="piso-2"></div>
+                    <!--<div id="elementos"></div>-->
+                </div>
+                
+
+                <div id="avatar">
+                    <div id="avatar-atropeyado"></div>
+                    <div id="avatar-clip" class="spd_sprite" width="30" height="28" frames="13" src="assets/images/avatar_sprite.png"></div>
+                    <div id="mensaje" class="mensaje-off"></div>
+                </div>
+
+                <div id="piso-container">
+                    <div id="piso"></div>
+                    <div id="paredes"></div>
+                    <!--<div id="puertas"></div>
+                    <div id="elementos"></div>-->
+                </div>
+
+                <div id="explosion-clip" class="spd_sprite explosion-clip-off" width="180" height="180" frames="36" src="assets/images/explosion_sprite.png"></div>
+                
+                <div id="misiones">
+                    <div id="mision1"></div>
+                    <div id="mision2"></div>
+                    <div id="mision3"></div>
+                    <div id="mision4"></div>
+                </div>
+            </div>
+
+            <div id="home-scene">
+                <div class="cielo"></div>
+                <div class="nubes"></div>
+                <div class="fondo fondo-peaton"></div>
+                <div id="personaje-home" class="personaje-1"><div class="personaje-ojos"></div></div>
+            </div>
+        </div>
+
+        <div id="keys-pad-cont" class="keys-pad-off keys-pad-hide">
+            <div id="keys-pad">
+                <div id="key-pad-left" key="37">
+                    <div class="key-pad-arrow"></div>
+                </div>
+                <div id="key-pad-right" key="39">
+                    <div class="key-pad-arrow"></div>
+                </div>
+                <div id="key-pad-up" key="38">
+                    <div class="key-pad-arrow"></div>
+                </div>
+                <div id="key-pad-down" key="40">
+                    <div class="key-pad-arrow"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal" class="modal-on">
+            <div id="modal-box">
+                <button id="modal-close-btn"></button>
+                <h2 id="modal-title"></h2>
+                <div id="modal-content">
+                    
+                    <div id="instrucciones-wrapper">
+                        <div id="instrucciones-wrap" class="instrucciones-wrap-left-1">
+                            
+                            <div class="instrucciones-wrap-page">
+                                <p class="modal-content-p">Usa las teclas de dirección para guiar a Juan por la ciudad y completa todas las misiones para ganar el juego</p>
+                                <div class="instrucciones-img-cont">
+                                    <img src="assets/images/peaton/instrucciones-p1.jpg" />
+                                    <img src="assets/images/teclas-instrucciones.jpg" width="117" height="80" />
+                                </div>
+                            </div>
+                            <div class="instrucciones-wrap-page">
+                                <p class="modal-content-p">No circules por las calles amenos que sea necesario.</p>
+                                <div class="instrucciones-img-cont">
+                                    <img src="assets/images/peaton/instrucciones-p2.jpg" />
+                                </div>
+                            </div>
+                            <div class="instrucciones-wrap-page">
+                                <p class="modal-content-p">Evita tropezar con los obstáculos.</p>
+                                <div class="instrucciones-img-cont">
+                                    <img src="assets/images/peaton/instrucciones-p3.jpg" />
+                                </div>
+                            </div>
+                            <div class="instrucciones-wrap-page">
+                                <p class="modal-content-p">Evita a toda costa chocarte ó ser atropellado por los autos que transiten por ese lugar.</p>
+                                <div class="instrucciones-img-cont">
+                                    <img src="assets/images/peaton/instrucciones-p4.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                        <button id="instrucciones-next-btn" onclick="nextInstrucciones()"></button>
+                        <button id="instrucciones-prev-btn" onclick="prevInstrucciones()"></button>
+                    </div>
+                    
+                </div>
+                <button id="modal-button">jugar</button>
+            </div>
+        </div>
+
+        <div id="cargador" class="cargador-on">
+            <div class="cargador-img"></div>
+            <div id="cargador-txt">Cargando...</div>
+        </div>
+
+        <div id="cargador-v2" class="cargador-v2-off">
+            <div class="cargador-v2-img"></div>
+        </div>
+    </div>
+
+<script src="assets/spider/sprites/sprite.js"></script>
+<script src="assets/spider/sprites/fotograma.js"></script>
+
+<script src="assets/data_peaton.js"></script>
+<script src="assets/js/mision1.js"></script>
+<script src="assets/js/mision2.js"></script>
+<script src="assets/js/paredes_peaton.js"></script>
+<script src="assets/js/mobile.js"></script>
+<script src="assets/js/modal.js"></script>
+<script src="assets/js/game.js"></script>
+<script>
+
+var underground_mp3 = null
+var boton_mp3 = null
+
+var animation_start = null
+window.onload = function(){
+    loadAudio({src:'assets/media/boton.mp3',callBack:function(data){
+    boton_mp3 = data
+    setCargadorText(true)
+    loadAudio({src:'assets/media/underground.mp3',callBack:function(data){
+    underground_mp3 = data
+    setCargadorText(true)
+    underground_mp3.addEventListener('ended',function(){underground_mp3.play()},false)
+
+        spdLoadSprite({idname:'avatar-clip',autoplay:'off',callBack:function(){ 
+        spdLoadSprite({idname:'explosion-clip',autoplay:'off',callBack:function(){ 
+            loadImage({url:'assets/images/avatar_atropeyado.png',callBack:function(){
+
+                spdCreateAnimation({id:0,sprite:'avatar-clip'})
+                spdCreateAnimation({id:1,sprite:'explosion-clip'})
+
+                prepareWindow()
+                setGame()
+            }})
+        }})
+        }})
+        
+    }})
+    }})
+}
+
+var toggle_audio = true
+function clickAudio(btn){
+    if(btn.className=='music-on'){
+        underground_mp3.volume = 0
+        btn.className = 'music-off'
+        toggle_audio = false
+    }else{
+        underground_mp3.volume = 1
+        btn.className = 'music-on'
+        toggle_audio = true
+    }
+}
+var loader_cont = Math.round((100/5))
+var loader_counter = 1
+function setCargadorText(load,txt){
+    var t = ''
+    if(load!=null&&load!=undefined){
+        t = (loader_counter*loader_cont)+'%'
+        loader_counter++
+    }else{
+        t = txt
+    }
+    getE('cargador-txt').innerHTML = String(t)
+}
+
+</script>
