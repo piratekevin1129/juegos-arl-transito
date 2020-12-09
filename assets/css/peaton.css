@@ -11,14 +11,10 @@
 
 .flecha{
 	position: absolute;
-	width: 45px;
-	height: 40px;
-	top: 427px;
-	left: 678px;
+	
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-image: url(../images/peaton/mision1/flecha-1.svg);
 	
 	animation-duration: 0.8s;
 	animation-iteration-count: infinite;

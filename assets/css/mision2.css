@@ -14,7 +14,6 @@
 	background-size: contain;
     background-position: center;
     box-sizing: border-box;
-    border: #000 solid 1px;
 }
 #carro1-m2{background-image: url(../images/peaton/mision2/carro1.png);}
 #carro2-m2{background-image: url(../images/peaton/mision2/carro2.png);}
@@ -22,52 +21,32 @@
 #carro4-m2{background-image: url(../images/peaton/mision2/carro4.png);}
 
 .carro-m2-chocado{
-    animation-name: animacion-carro-chocado-2;
-    animation-iteration-count: 1;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    -webkit-animation-name: animacion-carro-chocado-2;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-duration: 1s;
-    -webkit-animation-timing-function: linear;
-}
-@keyframes animacion-carro-chocado-2{
-    0%{
-        transform: rotate(0deg);
-        -webkit-transform: rotate(0deg);
-        -o-transform: rotate(0deg);
-    }
-    50%{
-        transform: rotate(180deg);
-        -webkit-transform: rotate(180deg);
-        -o-transform: rotate(180deg);
-    }
-    100%{
-        transform: rotate(360deg);
-        -webkit-transform: rotate(360deg);
-        -o-transform: rotate(360deg);
-    }
+    
 }
 
 #punto-mision-2{
-	left: 116px;
+	left: 150px;
 	top: 491px;
 }
 #luz-mision-2{
     top: 485px;
-    left: 101px;
+    left: 147px;
 }
 #flecha-mision-2{
+    width: 45px;
+	height: 40px;
 	top: 480px;
-    left: 74px;
+    left: 108px;
         
 	transform-origin: 100% center;
 	-webkit-transform-origin: 100% center;
-	-o-transform-origin: 100% center;
+    -o-transform-origin: 100% center;
+    background-image: url(../images/peaton/mision1/flecha-1.svg);
 
 	animation-name: flecha-animacion;
 	-webkit-animation-name: flecha-animacion;
 }
+
 #zebra-mision-2{
     position: absolute;
     width: 130px;
@@ -101,21 +80,21 @@
 		-webkit-transform: scale(1);
 		-o-transform: scale(1);
     }
-    60%{
+    50%{
         top: -11px;
         left: 11px;
         transform: scale(1.8);
 		-webkit-transform: scale(1.8);
 		-o-transform: scale(1.8);
     }
-    80%{
+    75%{
         top: -15px;
         left: 15px;
         transform: scale(1);
 		-webkit-transform: scale(1);
 		-o-transform: scale(1);
     }
-    95%{
+    90%{
         top: -18px;
         left: 18px;
         transform: scale(1.2);

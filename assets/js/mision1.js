@@ -553,7 +553,11 @@ var mision1 = {
 			clearTimeout(mision1.animacion_semaforo)
 			mision1.animacion_semaforo = null
 
-			getE('semaforo-mision-1').className = 'semaforo-stop'
+			if(getE('semaforo-mision-1')!=null&&getE('semaforo-mision-1')!=undefined){
+				getE('semaforo-mision-1').className = 'semaforo-stop'
+			}else{
+				console.log("semaforo not defined")
+			}			
 		},4000)
 	},
 	stopAnimationSemaforo:function(){
@@ -620,7 +624,7 @@ function animacionCarro(ind){
 		mision1.startAnimationSemaforo()
 	}
 	//if(ind==0){
-		console.log("running "+ind)
+		//console.log("running "+ind)
 	//}
 	
 }

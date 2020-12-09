@@ -1,0 +1,106 @@
+/****************MISION 3***********************/
+#mision3{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+#carro1-m3,#carro2-m3,#carro3-m3,#carro4-m3,#carro5-m3,#carro6-m3{
+	position: absolute;
+	width: 49px;
+	height: 27px;
+	margin: 0px;
+	padding: 0px;
+	background-repeat: no-repeat;
+	background-size: contain;
+    background-position: center;
+    box-sizing: border-box;
+}
+#carro1-m3{background-image: url(../images/peaton/mision3/carro1.png);}
+#carro2-m3{background-image: url(../images/peaton/mision3/carro2.png);}
+#carro3-m3{background-image: url(../images/peaton/mision3/carro3.png);}
+#carro4-m3{background-image: url(../images/peaton/mision3/carro4.png);}
+#carro5-m3{background-image: url(../images/peaton/mision3/carro5.png);}
+#carro6-m3{background-image: url(../images/peaton/mision3/carro6.png);}
+
+#luz-mision-3{
+    top: 220px;
+    left: 150px;
+}
+
+#flecha-mision-3{
+    width: 40px;
+	height: 45px;
+	top: 191px;
+	left: 144px;
+	transform-origin: center 100%;
+	-webkit-transform-origin: center 100%;
+    -o-transform-origin: center 100%;
+    background-image: url(../images/peaton/mision3/flecha-3.svg);
+
+	animation-name: flecha-animacion;
+	-webkit-animation-name: flecha-animacion;
+}
+.avatar-dead-3 #avatar-clip{
+    visibility: hidden;
+}
+.avatar-dead-3 #avatar-atropeyado{
+    visibility: inherit !important;
+    animation-name: animacion-atropeya-3;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    -webkit-animation-name: animacion-atropeya-3;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: ease-out;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes animacion-atropeya-3{
+    0%{
+		left: 0px;
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-o-transform: scale(1);
+	}
+	50%{
+		left: 70px;
+		transform: scale(1.8);
+		-webkit-transform: scale(1.8);
+		-o-transform: scale(1.8);
+	}
+    75%{
+		left: 85px;
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-o-transform: scale(1);
+	}
+	90%{
+		left: 95px;
+		transform: scale(1.2);
+		-webkit-transform: scale(1.2);
+		-o-transform: scale(1.2);
+	}
+	100%{
+		left: 100px;
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-o-transform: scale(1);
+	}
+}
+
+#punto-mision-3{
+	left: 155px;
+	top: 230px;
+}
+.puente{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    left: 114px;
+    top: 383px;
+    background-color: rgba(0,0,0,0.5);
+}
+.avatar-frente{
+    z-index: 1000;
+}

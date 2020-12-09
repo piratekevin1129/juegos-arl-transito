@@ -199,7 +199,6 @@ var piso_data = {
 	elementos:[]
 }
 
-
 function setFloor(floor,start){
 	actual_floor = floor
 	var walls = []
@@ -236,25 +235,18 @@ function setFloor(floor,start){
 	}
 }
 
-function clearFloor(walls){
+function clearFloor(){
 	piso.innerHTML = ''
 	piso_2.innerHTML = ''
-	if(walls){
-		paredes.innerHTML = ''
-		piso_data = {
-			left:0,
-			top:0,
-			width:0,
-			height:0,
-			paredes:[],
-			elementos:[]
-		}
-	}else{
-		piso_data.left = 0,
-		piso_data.top = 0,
-		piso_data.width = 0,
-		piso_data.height = 0,
-		piso_data.elementos = []
+	
+	paredes.innerHTML = ''
+	piso_data = {
+		left:0,
+		top:0,
+		width:0,
+		height:0,
+		paredes:[],
+		elementos:[]
 	}
 	
 	piso_data.left = 0
@@ -270,7 +262,7 @@ function clearFloor(walls){
 }
 
 ///////////////MISIONES///////////////
-var m = 1
+var m = 3
 var animacion_mision = null
 function setMission(repeat){
 	var html = ''
@@ -297,7 +289,6 @@ function setMission(repeat){
 		piso_2.style.left = piso_data.left+'px'
 
 		//poner elementos
-
 		if(!repeat){
 			//carros
 			for(i = 0;i<mision1.carros.length;i++){
@@ -373,29 +364,58 @@ function setMission(repeat){
 
 	else if(m==2){
 		//animar hasta que se vea la flecha
+		avatar_data.direccion = 'left'
+		avatar.className = 'avatar-'+avatar_data.direccion
+
 		if(!repeat){
-			/*avatar_data.left = 0
-			avatar_data.top = 0*/
-			avatar_data.direccion = 'left'
-			/*piso_data.left = 0
-			piso_data.top = 0
-			movex = 1
-			movey = 1*/
-			
-			//put avatar
-			/*avatar.style.top = avatar_data.top+'px'
-			avatar.style.left = avatar_data.left+'px'*/
-			avatar.className = 'avatar-'+avatar_data.direccion
-			/*piso.style.top = piso_data.top+'px'
-			piso.style.left = piso_data.left+'px'
-			paredes.style.top = piso_data.top+'px'
-			paredes.style.left = piso_data.left+'px'
-			piso_2.style.top = piso_data.top+'px'
-			piso_2.style.left = piso_data.left+'px'*/
+			//poner elementos
+			//carros
+			for(i = 0;i<mision2.carros.length;i++){
+				var car = document.createElement('div')
+				car.className = 'carro-mision-2'
+				car.setAttribute('id',('carro'+mision2.carros[i].id+'-m2'))
+				car.setAttribute('type','carro-m2')
+				car.style.left = mision2.carros[i].animation_data[0].x+'px'
+				car.style.top = mision2.carros[i].animation_data[0].y+'px'
+				car.style.transform = 'rotate('+mision2.carros[i].animation_data[0].r+'deg)'
+				piso.appendChild(car)
+				piso_data.elementos.push(car)
+				mision2.carros[i].name = 'carro'+mision2.carros[i].id+'-m2'
+			}
+
+			//ppunto final
+			var punto = document.createElement('div')
+			punto.className = 'icono-punto'
+			punto.setAttribute('id','punto-mision-2')
+			punto.setAttribute('type','punto')
+			piso.appendChild(punto)
+			piso_data.elementos.push(punto)
+
+			var luz = document.createElement('div')
+			luz.className = 'icono-luz'
+			luz.setAttribute('id','luz-mision-2')
+			luz.setAttribute('type','luz')
+			piso.appendChild(luz)
+			//piso_data.elementos.push(luz)
+
+			//flecha
+			var flecha = document.createElement('div')
+			flecha.className = 'flecha'
+			flecha.setAttribute('id','flecha-mision-2')
+			flecha.setAttribute('type','flecha')
+			piso.appendChild(flecha)
+			//piso_data.elementos.push(flecha)
+
+			//zebra
+			var zebra = document.createElement('div')
+			zebra.className = 'zebra'
+			zebra.setAttribute('id','zebra-mision-2')
+			zebra.setAttribute('type','zebra')
+			piso.appendChild(zebra)
+			piso_data.elementos.push(zebra)
 		}else{
 			avatar_data.left = 384
-			avatar_data.top = 254
-			avatar_data.direccion = 'left'
+			avatar_data.top = 230
 			piso_data.left = -340
 			piso_data.top = -185
 			movex = 2
@@ -404,25 +424,36 @@ function setMission(repeat){
 			//put avatar
 			avatar.style.top = avatar_data.top+'px'
 			avatar.style.left = avatar_data.left+'px'
-			avatar.className = 'avatar-'+avatar_data.direccion
 			piso.style.top = piso_data.top+'px'
 			piso.style.left = piso_data.left+'px'
 			paredes.style.top = piso_data.top+'px'
 			paredes.style.left = piso_data.left+'px'
 			piso_2.style.top = piso_data.top+'px'
 			piso_2.style.left = piso_data.left+'px'
+
+			//reubicar
+			for(i = 0;i<mision2.carros.length;i++){
+				var car = getE(mision2.carros[i].name)
+				car.style.left = mision2.carros[i].animation_data[0].x+'px'
+				car.style.top = mision2.carros[i].animation_data[0].y+'px'
+				car.style.transform = 'rotate('+mision2.carros[i].animation_data[0].r+'deg)'
+				car.className = 'carro-mision-2'//resetear clases
+				mision2.carros[i].frame = 0
+			}
 		}
 
 		//mover escenario
-		top_speed = 10
+		top_speed = 3
 		direccion_left = true
 		direccion_right = false
 		direccion_up = false
 		direccion_down = false
+		spdPlayAnimation({frame:1,stop:0,loop:true},0)
+		avatar_caminando = true
 
 		var steps = 0
 		animacion_mision = setInterval(function(){
-			if(steps<50){
+			if(steps<100){
 				moveAvatar(true)
 				steps++
 			}else{
@@ -435,69 +466,15 @@ function setMission(repeat){
 				direccion_down = false
 				avatar_speed = 0
 				top_speed = 2
+
+				avatar_caminando = false
+				spdStopAnimation(0)
 				setMission2()
 			}
 		},20)
 		
 		function setMission2(){
 			mision2.zebra = false
-			//poner elementos
-			if(!repeat){
-				//carros
-				for(i = 0;i<mision2.carros.length;i++){
-					var car = document.createElement('div')
-					car.className = 'carro-mision-2'
-					car.setAttribute('id',('carro'+mision2.carros[i].id+'-m2'))
-					car.setAttribute('type','carro-m2')
-					car.style.left = mision2.carros[i].animation_data[0].x+'px'
-					car.style.top = mision2.carros[i].animation_data[0].y+'px'
-					car.style.transform = 'rotate('+mision2.carros[i].animation_data[0].r+'deg)'
-					piso.appendChild(car)
-					piso_data.elementos.push(car)
-					mision2.carros[i].name = 'carro'+mision2.carros[i].id+'-m2'
-				}
-
-				//ppunto final
-				var punto = document.createElement('div')
-				punto.className = 'icono-punto'
-				punto.setAttribute('id','punto-mision-2')
-				punto.setAttribute('type','punto')
-				piso.appendChild(punto)
-				piso_data.elementos.push(punto)
-
-				var luz = document.createElement('div')
-				luz.className = 'icono-luz'
-				luz.setAttribute('id','luz-mision-2')
-				luz.setAttribute('type','luz')
-				piso.appendChild(luz)
-				//piso_data.elementos.push(luz)
-
-				//flecha
-				var flecha = document.createElement('div')
-				flecha.className = 'flecha'
-				flecha.setAttribute('id','flecha-mision-2')
-				flecha.setAttribute('type','flecha')
-				piso.appendChild(flecha)
-				//piso_data.elementos.push(flecha)
-
-				//zebra
-				var zebra = document.createElement('div')
-				zebra.className = 'zebra'
-				zebra.setAttribute('id','zebra-mision-2')
-				zebra.setAttribute('type','zebra')
-				piso.appendChild(zebra)
-				piso_data.elementos.push(zebra)
-			}else{
-				//reubicar
-				for(i = 0;i<mision2.carros.length;i++){
-					var car = getE(mision2.carros[i].name)
-					car.style.left = mision2.carros[i].animation_data[0].x+'px'
-					car.style.top = mision2.carros[i].animation_data[0].y+'px'
-					car.style.transform = 'rotate('+mision2.carros[i].animation_data[0].r+'deg)'
-					car.className = 'carro-mision-2'//resetear clases
-					mision2.carros[i].frame = 0
-				}
-			}
 
 			html = mision2.test
 		
@@ -515,6 +492,128 @@ function setMission(repeat){
 				})
 			},50)
 		}
+	}
+
+	else if(m==3){
+		top_speed = 1
+		//animar hasta que se vea la flecha
+		if(!repeat){
+			avatar_data.left = 148
+			avatar_data.top = 261
+			avatar_data.direccion = 'left'
+			piso_data.left = 0
+			piso_data.top = -215
+			movex = 1
+			movey = 1
+			
+			//put avatar
+			avatar.style.top = avatar_data.top+'px'
+			avatar.style.left = avatar_data.left+'px'
+			avatar.className = 'avatar-'+avatar_data.direccion
+			piso.style.top = piso_data.top+'px'
+			piso.style.left = piso_data.left+'px'
+			paredes.style.top = piso_data.top+'px'
+			paredes.style.left = piso_data.left+'px'
+			piso_2.style.top = piso_data.top+'px'
+			piso_2.style.left = piso_data.left+'px'
+		}else{
+			avatar_data.left = 148
+			avatar_data.top = 261
+			avatar_data.direccion = 'left'
+			piso_data.left = 0
+			piso_data.top = -215
+			movex = 1
+			movey = 1
+			
+			//put avatar
+			avatar.style.top = avatar_data.top+'px'
+			avatar.style.left = avatar_data.left+'px'
+			avatar.className = 'avatar-'+avatar_data.direccion
+			piso.style.top = piso_data.top+'px'
+			piso.style.left = piso_data.left+'px'
+			paredes.style.top = piso_data.top+'px'
+			paredes.style.left = piso_data.left+'px'
+			piso_2.style.top = piso_data.top+'px'
+			piso_2.style.left = piso_data.left+'px'
+		}
+
+		if(!repeat){
+			//carros
+			for(i = 0;i<mision3.carros.length;i++){
+				var car = document.createElement('div')
+				car.className = 'carro-mision-3'
+				car.setAttribute('id',('carro'+mision3.carros[i].id+'-m3'))
+				car.setAttribute('type','carro-m3')
+				mision3.carros[i].x = -50
+				car.style.left = mision3.carros[i].x+'px'
+				car.style.top = '0px'
+				piso_2.appendChild(car)
+				piso_data.elementos.push(car)
+				mision3.carros[i].name = 'carro'+mision3.carros[i].id+'-m3'
+			}
+
+			//ppunto final
+			var punto = document.createElement('div')
+			punto.className = 'icono-punto'
+			punto.setAttribute('id','punto-mision-3')
+			punto.setAttribute('type','punto')
+			piso.appendChild(punto)
+			piso_data.elementos.push(punto)
+
+			var luz = document.createElement('div')
+			luz.className = 'icono-luz'
+			luz.setAttribute('id','luz-mision-3')
+			luz.setAttribute('type','luz')
+			piso.appendChild(luz)
+			//piso_data.elementos.push(luz)
+
+			//flecha
+			var flecha = document.createElement('div')
+			flecha.className = 'flecha'
+			flecha.setAttribute('id','flecha-mision-3')
+			flecha.setAttribute('type','flecha')
+			piso.appendChild(flecha)
+			//piso_data.elementos.push(flecha)
+
+			var puente = document.createElement('div')
+			puente.className = 'puente'
+			puente.setAttribute('id','puente')
+			puente.setAttribute('type','puente')
+			piso.appendChild(puente)
+			piso_data.elementos.push(puente)
+
+		}else{
+			//reubicar
+			for(i = 0;i<mision3.carros.length;i++){
+				mision3.carros[i].x = -50
+				mision3.carros[i].y = 0
+				mision3.carros[i].active = false
+				mision3.carros[i].frame = 0
+				mision3.carros[i].fragmento = 0
+				mision3.carros[i].duracion = 0
+				
+				getE(mision3.carros[i].name).style.left = mision3.carros[i].x+'px'
+				getE(mision3.carros[i].name).style.top = mision3.carros[i].y+'px'
+				getE(mision3.carros[i].name).className = 'carro-mision-3'
+				
+			}
+		}
+
+		html = mision3.test
+		
+		animacion_mision = setTimeout(function(){
+			clearTimeout(animacion_mision)
+			animacion_mision = null
+
+			setModal({
+				close:false,
+				title:mision3.title,
+				content:html,
+				button:true,
+				value:'comenzar',
+				action:'startMission'
+			})
+		},50)
 	}
 }
 function startMission(){
@@ -545,37 +644,70 @@ function startMission(){
 			})
 			addEvents()
 		})
+	}else if(m==3){
+		unsetModal(function(){
+			//emmpeezar animaciones
+			mision3.prepareCars()
+			mision3.setAnimacionCarros()
+			
+			setMensaje({
+				content:'<p>Debo cruzar por un medio seguro.</p>',
+				delay:2000
+			})
+			addEvents()
+		})
 	}
 }
 function repetirMission(){
 	if(m==1){
-		setCargador2({callBack:function(){
-			setMission(true)
-			unsetCargador2()
-		}})
+		unsetModal(function(){
+			setCargador2({callBack:function(){
+				setMission(true)
+				unsetCargador2()
+			}})
+		})
 	}else if(m==2){
-		setCargador2({callBack:function(){
-			//poner todo a cuando terminó la primera
-			setMission(true)
-			unsetCargador2()
-		}})
+		unsetModal(function(){
+			setCargador2({callBack:function(){
+				//poner todo a cuando terminó la primera
+				setMission(true)
+				unsetCargador2()
+			}})
+		})
+	}else if(m==3){
+		unsetModal(function(){
+			setCargador2({callBack:function(){
+				//poner todo a cuando terminó la primera
+				setMission(true)
+				unsetCargador2()
+			}})
+		})
 	}
 }
 function continueMission(){
 	if(m==1){
 		//no comprobar nada, mostrar modal
 		mision1.aprobarMision()
+	}else if(m==2){
+		//no comprobar nada, mostrar modal
+		mision2.aprobarMision()
+	}else if(m==3){
+		//no comprobar nada, mostrar modal
+		mision3.aprobarMision()
 	}
 }
 function nextMission(){
 	unsetModal(function(){
 		if(m==1){
 			mision1.cleanMision()
+		}else if(m==2){
+			mision2.cleanMision()
+		}else if(m==3){
+			mision3.cleanMision()
 		}
 		m++
 		setMission(false)
 	})
-	
 }
 function cleanMission(walls){
 	piso.innerHTML = ''
@@ -1035,49 +1167,54 @@ function preDetectCollision(){
 	var colli = false
 	var colli_obj = null
 	var detect_collision1 = detectCollision(false,false)
+	colli_obj = detect_collision1
 	if(!detect_collision1.stop){
 		var detect_collision2 = detectCollision(true,false)
+		colli_obj = detect_collision2
 		if(!detect_collision2.stop){
 
 		}else{
-			colli_obj = detect_collision2
 			colli = true
 		}
 	}else{
-		colli_obj = detect_collision1
 		colli = true
 	}
 	
 	if(colli){
 		removeEvents()
-		if(m==1){
-			if(colli_obj.type=='carro-m1'){
-				//atropeyar
-				colli_obj.params[0].classList.add('carro-m1-chocado')
-				mision1.fallarMision()
-			}else if(colli_obj.type=='punto'){
-				//seguir con la misión
-				continueMission()
-			}
-		}else if(m==2){
-			if(colli_obj.type=='carro-m2'){
-				//atropeyar
-				colli_obj.params[0].classList.add('carro-m2-chocado')
-				mision2.fallarMision()
-			}else if(colli_obj.type=='punto'){
-				//seguir con la misión
-				continueMission()
-			}
-			
+		if(colli_obj.type=='carro-m1'){
+			//atropeyar
+			colli_obj.params[0].classList.add('carro-m1-chocado')
+			mision1.fallarMision()
+		}else if(colli_obj.type=='punto'){
+			//seguir con la misión
+			continueMission()
+		}else if(colli_obj.type=='carro-m2'){
+			//atropeyar
+			colli_obj.params[0].classList.add('carro-m2-chocado')
+			mision2.fallarMision()
+		}else if(colli_obj.type=='carro-m3'){
+			//atropeyar
+			colli_obj.params[0].classList.add('carro-m3-chocado')
+			mision3.fallarMision()
+		}else if(colli_obj.type=='puente'){
+			//seguir con la misión
+			mision3.cruzando = true
+			mision3.pasarPuente()
+		}
+	}else{
+		//si no hay colision miremos que no vaya a ser que esté tocando la zebra en la mision 2
+		if(m==2){
 			if(colli_obj.type=='zebra'){
 				mision2.zebra = true
 			}else{
 				mision2.zebra = false
 			}
 		}
-	}
+	}	
 }
 
+//para objetos en movimiento
 function detectCollision(a,b){
 	var x = null
 	var y = null
@@ -1138,6 +1275,17 @@ function detectCollision(a,b){
 				x:(rect.left-rect_parent.left),
 				y:(rect.top-rect_parent.top)
 			}
+			if(pre_type=='carro-m2'){
+				//rect mas pequeño
+				rect_elemento = {
+					w:25,
+					h:25,
+					x:(rect.left-rect_parent.left)+5,
+					y:(rect.top-rect_parent.top)+5
+				}
+			}else{
+
+			}
 			
 			if(
 				(a_rect.x+avatar_data.subarea)>=rect_elemento.x&&
@@ -1156,7 +1304,17 @@ function detectCollision(a,b){
 		if(type=='carro-m1'){
 			stop = true
 			params[0] = element
+		}else if(type=='carro-m2'){
+			stop = true
+			params[0] = element
+		}else if(type=='carro-m3'){
+			stop = true
+			params[0] = element
 		}else if(type=='punto'){
+			stop = true
+		}else if(type=='zebra'){
+			//stop = true
+		}else if(type=='puente'){
 			stop = true
 		}
 	}
@@ -1164,6 +1322,7 @@ function detectCollision(a,b){
 	return {collision:collision,stop:stop,params:params,type:type}
 }
 
+//para paredes
 function checkCollision(x,y,a,b){
 	var collision = false
 	//comprobar colision

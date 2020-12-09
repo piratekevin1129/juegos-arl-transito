@@ -4,7 +4,8 @@ var mision2 = {
     carros:[
         {
 			id:1,
-			name:'',
+            name:'',
+            size:{w:49,h:49},
 			animation_data:[
                 {x:266.5,y:752.5,r:0},
                 {x:266.4,y:739.7,r:0},
@@ -37,12 +38,12 @@ var mision2 = {
                 {x:276.7,y:401.7,r:44.3},
                 {x:283,y:392.3,r:55.3},
                 {x:290.8,y:383.8,r:66.3},
-                {x:304.2,y:376.2,r:69.9},
+                {x:304.2,y:376.1,r:69.9},
                 {x:318.6,y:370.7,r:73.2},
                 {x:333.6,y:367.2,r:76.6},
-                {x:349,y:365.2,r:79.9},
-                {x:364.5,y:364,r:83.4},
-                {x:379.8,y:363.6,r:86.7},
+                {x:349,y:365.1,r:79.9},
+                {x:364.4,y:364,r:83.4},
+                {x:379.7,y:363.6,r:86.7},
                 {x:395,y:363.6,r:90},
                 {x:414.3,y:363.5,r:90},
                 {x:433.8,y:363.6,r:90},
@@ -190,7 +191,7 @@ var mision2 = {
 			frame:0,
 			animacion:null,
 			startAnimation: function(ind){
-				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},35)
+				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},50)
 			},
 			stopAnimation:function(ind){
 				clearInterval(mision2.carros[ind].animacion)
@@ -199,7 +200,8 @@ var mision2 = {
         },
         {
 			id:2,
-			name:'',
+            name:'',
+            size:{w:49,h:49},
 			animation_data:[
                 {x:203.2,y:750.5,r:0},
                 {x:203.3,y:737.5,r:0},
@@ -240,7 +242,7 @@ var mision2 = {
                 {x:279.7,y:321.6,r:76.1},
                 {x:291.2,y:320.2,r:78.9},
                 {x:302.7,y:319.3,r:81.7},
-                {x:314.1,y:318.9,r:84.4},
+                {x:314.1,y:319,r:84.4},
                 {x:325.6,y:318.9,r:87.2},
                 {x:337.1,y:319.5,r:90},
                 {x:347.6,y:319,r:90},
@@ -385,7 +387,7 @@ var mision2 = {
 			frame:0,
 			animacion:null,
 			startAnimation: function(ind){
-				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},35)
+				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},50)
 			},
 			stopAnimation:function(ind){
 				clearInterval(mision2.carros[ind].animacion)
@@ -394,7 +396,8 @@ var mision2 = {
         },
         {
 			id:3,
-			name:'',
+            name:'',
+            size:{w:49,h:49},
 			animation_data:[
                 {x:294,y:750.7,r:0},
                 {x:294.1,y:738.1,r:0},
@@ -427,7 +430,7 @@ var mision2 = {
                 {x:313,y:407.1,r:56.6},
                 {x:322.2,y:400.4,r:70.8},
                 {x:333.8,y:395.4,r:74.1},
-                {x:346.1,y:392.2,r:77.2},
+                {x:346.1,y:392.3,r:77.2},
                 {x:358.6,y:390.5,r:80.4},
                 {x:371.1,y:389.8,r:83.7},
                 {x:383.7,y:389.8,r:86.9},
@@ -580,7 +583,7 @@ var mision2 = {
 			frame:0,
 			animacion:null,
 			startAnimation: function(ind){
-				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},35)
+				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},50)
 			},
 			stopAnimation:function(ind){
 				clearInterval(mision2.carros[ind].animacion)
@@ -589,7 +592,8 @@ var mision2 = {
         },
         {
 			id:4,
-			name:'',
+            name:'',
+            size:{w:49,h:49},
 			animation_data:[
                 {x:228.7,y:751.5,r:0},
                 {x:228.5,y:738.6,r:0},
@@ -693,16 +697,16 @@ var mision2 = {
                 {x:1221.6,y:335.6,r:69.9},
                 {x:1232.7,y:332.6,r:59.6},
                 {x:1243,y:327.4,r:49.6},
-                {x:1251.8,y:319.8,r:39.3},
+                {x:1251.7,y:319.9,r:39.3},
                 {x:1258.7,y:310.4,r:29.3},
                 {x:1263.5,y:299.9,r:19.2},
-                {x:1266.3,y:291.8,r:16.7},
-                {x:1268.4,y:283.5,r:14.3},
-                {x:1270,y:275.1,r:12},
+                {x:1266.2,y:291.8,r:16.7},
+                {x:1268.3,y:283.5,r:14.3},
+                {x:1269.9,y:275.1,r:12},
                 {x:1271.2,y:266.7,r:9.5},
                 {x:1272.1,y:258.2,r:7},
                 {x:1272.7,y:249.6,r:4.7},
-                {x:1273.3,y:241.1,r:2.2},
+                {x:1273.2,y:241.1,r:2.2},
                 {x:1274.6,y:232.7,r:0},
                 {x:1273.8,y:225.8,r:0},
                 {x:1273.9,y:218.8,r:0},
@@ -775,7 +779,7 @@ var mision2 = {
 			frame:0,
 			animacion:null,
 			startAnimation: function(ind){
-				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},35)
+				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},50)
 			},
 			stopAnimation:function(ind){
 				clearInterval(mision2.carros[ind].animacion)
@@ -809,22 +813,44 @@ var mision2 = {
 				action:'repetirMission'
 			})
 		}},1)
-    }
+    },
+    aprobarMision:function(){
+		//parar animaciones
+		for(var i = 0;i<mision2.carros.length;i++){
+			mision2.carros[i].stopAnimation(i)
+        }
+        mision2.zebra = false
+
+		var frase = '<p>En las zonas premarcadas tienes prelación sobre los autos, y por lo tanto no debes detenerte.</p>'
+		setModal({
+			close:false,
+			title:'¡Muy bien Juan!',
+			content:frase,
+			button:true,
+			value:'continuar',
+			action:'nextMission'
+		})
+	},
+	cleanMision:function(){
+		cleanMission()
+	}
 }
 
 function animacionCarro2(ind){
-	//console.log("aqui")
-	getE(mision2.carros[ind].name).style.left = mision2.carros[ind].animation_data[mision2.carros[ind].frame].x+'px'
-    getE(mision2.carros[ind].name).style.top = mision2.carros[ind].animation_data[mision2.carros[ind].frame].y+'px'
-    getE(mision2.carros[ind].name).style.transform = 'rotate('+mision2.carros[ind].animation_data[mision2.carros[ind].frame].r+'deg)'
-    mision2.carros[ind].frame++
-    
-    if(mision2.carros[ind].frame>26&&mision2.zebra){
-        mision2.carros[ind].frame = 25
+    //console.log("aqui")
+    if(mision2.carros[ind].frame==22&&mision2.zebra){
+        mision2.carros[ind].frame = 22
+    }else{
+        var x = mision2.carros[ind].animation_data[mision2.carros[ind].frame].x-(mision2.carros[ind].size.w/2)
+        var y = mision2.carros[ind].animation_data[mision2.carros[ind].frame].y-(mision2.carros[ind].size.h/2)
+        getE(mision2.carros[ind].name).style.left = x+'px'
+        getE(mision2.carros[ind].name).style.top = y+'px'
+        getE(mision2.carros[ind].name).style.transform = 'rotate('+mision2.carros[ind].animation_data[mision2.carros[ind].frame].r+'deg)'
+        mision2.carros[ind].frame++
+        if(mision2.carros[ind].frame==mision2.carros[ind].animation_data.length){
+            mision2.carros[ind].frame = 0
+        }
     }
-	if(mision2.carros[ind].frame==mision2.carros[ind].animation_data.length){
-		mision2.carros[ind].frame = 0
-	}
 }
 
 
