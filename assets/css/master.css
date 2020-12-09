@@ -381,6 +381,40 @@ header{
     left: 100% !important;
 }
 
+#vidas-cont{
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 5px;
+    box-shadow: -1px 1px 2px 1px rgba(0,0,0,0.5);
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#vidas-cont span,#vidas-txt{
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Barlow-Bold';
+    font-size: 24px;
+    color: #78BE20;
+    text-align: center;
+    line-height: normal;
+    font-weight: normal;
+    text-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+}
+#vidas-cont span{
+    margin: 0px 5px;
+}
+#vidas-cont img{
+    width: 27px;
+    height: 35px;
+}
+
 #music-btn{
     position: absolute;
     display: block;
@@ -541,7 +575,7 @@ header{
 .icono-pared{
     position: absolute;
     background-color: #000000;
-    opacity: 0.5;
+    opacity: 0;
     /*visibility: hidden;*/
 }
 #explosion-clip{
@@ -728,8 +762,8 @@ header{
     background-color: rgba(120,190,32,0);
     box-sizing: border-box;
 
-    transition: background-color 0.2s, color 0.2s;
-    -webkit-transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    -webkit-transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
 }
 .modal-pregunta-option span{
     font-family: 'Barlow-Bold';
@@ -903,12 +937,19 @@ header{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-.cargador-v2-on{
     display: flex;
 }
+.cargador-v2-on{
+    opacity: 1;
+    visibility: visible;
+    transition: visibility 0s, opacity 0.5s;
+    -webkit-transition: visibility 0s, opacity 0.5s;
+}
 .cargador-v2-off{
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.5s, opacity 0.5s;
+    -webkit-transition: visibility 0.5s, opacity 0.5s;
 }
 
 .cargador-v2-img{

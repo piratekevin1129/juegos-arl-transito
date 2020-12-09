@@ -72,6 +72,13 @@
                     <div id="mision3"></div>
                     <div id="mision4"></div>
                 </div>
+
+                <button id="music-btn" class="music-on" onclick="clickAudio(this)"></button>
+                <div id="vidas-cont">
+                    <img src="assets/images/vidas-icon.png" />
+                    <span>=</span>
+                    <p id="vidas-txt"></p>
+                </div>
             </div>
 
             <div id="home-scene">
@@ -149,7 +156,7 @@
         </div>
 
         <div id="cargador-v2" class="cargador-v2-off">
-            <div class="cargador-v2-img"></div>
+            <!--<div class="cargador-v2-img"></div>-->
         </div>
     </div>
 
@@ -212,8 +219,11 @@ window.onload = function(){
     setCargadorText(true)
 
         spdLoadSprite({idname:'avatar-clip',autoplay:'off',callBack:function(){ 
+        setCargadorText(true)
         spdLoadSprite({idname:'explosion-clip',autoplay:'off',callBack:function(){ 
+        setCargadorText(true)
             loadImage({url:'assets/images/avatar_atropeyado.png',callBack:function(){
+                setCargadorText(true)
 
                 spdCreateAnimation({id:0,sprite:'avatar-clip'})
                 spdCreateAnimation({id:1,sprite:'explosion-clip'})

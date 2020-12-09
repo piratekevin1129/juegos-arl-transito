@@ -189,6 +189,7 @@ var mision3 = {
         var frase = '<p>Cuando el tráfico está muy peligroso debes usar el puente peatonal</p>'
         //console.log("atropeyar")
         avatar.classList.add('avatar-dead-3')
+        atropeyar_mp3.play()
 
         clearInterval(mision3.animacion_carros)
         mision3.animacion_carros = null

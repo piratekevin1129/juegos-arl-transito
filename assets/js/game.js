@@ -46,6 +46,9 @@ game_scene.style.visibility = 'hidden'
 var game_rect = game.getBoundingClientRect()
 var game_width = game_rect.width
 var game_height = game_rect.height
+var vidas_txt = getE('vidas-txt')
+var total_vidas = 5
+vidas_txt.innerHTML = total_vidas
 //console.log(game_width,game_height)
 
 function setInstrucciones(start){
@@ -114,6 +117,7 @@ var animacion_swipe = null
 function empezarJuego(){
 	underground_mp3.play()
 	boton_mp3.play()
+	getE('cargador-txt').innerHTML = 'Cargando...'
 	getE('cargador').className = 'cargador-on'
 	unsetModal(function(){
 		game_scene.style.visibility = 'visible'
@@ -788,13 +792,13 @@ function setMission(repeat){
 
 		if(!repeat){
 			//temporal, descomentar para empezar en esta mision
-			avatar_data.left = 384
+			/*avatar_data.left = 384
 			avatar_data.top = 215
 			piso_data.left = -350
 			piso_data.top = 0
 			movex = 2
 			movey = 1
-			updateStatus()
+			updateStatus()*/
 
 			//poner elementos
 			//calles
@@ -963,47 +967,74 @@ function startMission(){
 		})
 	}
 }
-function repetirMission(){
-	if(m==1){
+function repetirMission(lose_life){
+	var final_game = false
+	if(lose_life==null&&lose_life==undefined){
+		total_vidas--
+		if(total_vidas<0){
+			final_game = true
+		}else{
+			vidas_txt.innerHTML = total_vidas
+		}
+	}else{
+		//no quita vidas
+		console.log("no quita vidas")
+	}
+
+	if(!final_game){
+		if(m==1){
+			unsetModal(function(){
+				setCargador2({callBack:function(){
+					setMission(true)
+					unsetCargador2()
+				}})
+			})
+		}else if(m==2){
+			unsetModal(function(){
+				setCargador2({callBack:function(){
+					//poner todo a cuando terminó la primera
+					setMission(true)
+					unsetCargador2()
+				}})
+			})
+		}else if(m==3){
+			unsetModal(function(){
+				setCargador2({callBack:function(){
+					//poner todo a cuando terminó la primera
+					setMission(true)
+					unsetCargador2()
+				}})
+			})
+		}else if(m==4){
+			unsetModal(function(){
+				setCargador2({callBack:function(){
+					//poner todo a cuando terminó la primera
+					setMission(true)
+					unsetCargador2()
+				}})
+			})
+		}else if(m==5){
+			unsetModal(function(){
+				setCargador2({callBack:function(){
+					//poner todo a cuando terminó la primera
+					setMission(true)
+					unsetCargador2()
+				}})
+			})
+		}
+	}else{
 		unsetModal(function(){
-			setCargador2({callBack:function(){
-				setMission(true)
-				unsetCargador2()
-			}})
-		})
-	}else if(m==2){
-		unsetModal(function(){
-			setCargador2({callBack:function(){
-				//poner todo a cuando terminó la primera
-				setMission(true)
-				unsetCargador2()
-			}})
-		})
-	}else if(m==3){
-		unsetModal(function(){
-			setCargador2({callBack:function(){
-				//poner todo a cuando terminó la primera
-				setMission(true)
-				unsetCargador2()
-			}})
-		})
-	}else if(m==4){
-		unsetModal(function(){
-			setCargador2({callBack:function(){
-				//poner todo a cuando terminó la primera
-				setMission(true)
-				unsetCargador2()
-			}})
-		})
-	}else if(m==5){
-		unsetModal(function(){
-			setCargador2({callBack:function(){
-				//poner todo a cuando terminó la primera
-				setMission(true)
-				unsetCargador2()
-			}})
+			setModal({
+				close:false,
+				title:'¡Lo sentimos!',
+				content:'<p>Se han agotado todas las oportunidades, vuelve a comenzar</p>',
+				button:true,
+				value:'aceptar',
+				action:'irInicio'
+			})
 		})
 	}
+	
 }
 function continueMission(){
 	if(m==1){
@@ -1044,21 +1075,7 @@ function nextMission(){
 				clearInterval(animation_start)
 				animation_start = null
 
-				game_scene.style.visibility = 'hidden'
-				getE('home-scene').style.display = 'block'
-	
-				getE('cargador').className = 'cargador-off'
-
-				//final
-				setModal({
-					close:false,
-					title:'¡Felicidades!',
-					content:'<p>Has completado el juego con Juan el peatón. Ya eres un experto en normas de tránsito</p>',
-					button:true,
-					value:'aceptar',
-					orientation:'left',
-					action:'irInicio'
-				})
+				ganarJuego()
 			},1000)
 		}else{
 			setMission(false)
@@ -1679,10 +1696,10 @@ function detectCollision(a,b){
 			if(pre_type=='carro-m2'){
 				//rect mas pequeño
 				rect_elemento = {
-					w:25,
-					h:25,
-					x:(rect.left-rect_parent.left)+10,
-					y:(rect.top-rect_parent.top)+10
+					w:31,
+					h:31,
+					x:(rect.left-rect_parent.left)+9,
+					y:(rect.top-rect_parent.top)+9
 				}
 			}else{
 				if(pre_type=='carro-m4'||pre_type=='carro-m5'){
@@ -1853,17 +1870,17 @@ function checkCollision(x,y,a,b){
 			//stop = null
 			params = []
 			type = ''
-			setMensaje({content:'<p>No debo desviarme del camino</p>',delay:1500})
+			setMensaje({content:'<p>No debo desviarme del objetivo</p>',delay:1500})
 		}else if(type=='calle-m2'){
 			//stop = null
 			params = []
 			type = ''
-			setMensaje({content:'<p>No debo desviarme del camino</p>',delay:1500})
+			setMensaje({content:'<p>No debo desviarme del objetivo</p>',delay:1500})
 		}else if(type=='calle-m3'){
 			//stop = null
 			params = []
 			type = ''
-			setMensaje({content:'<p>No debo desviarme del camino</p>',delay:1500})
+			setMensaje({content:'<p>No debo desviarme del objetivo</p>',delay:1500})
 		}else if(type=='calle-m4'){
 			//stop = null
 			params = []
@@ -1873,7 +1890,6 @@ function checkCollision(x,y,a,b){
 			//stop = null
 			params = []
 			type = ''
-			setMensaje({content:'<p>No debo desviarme del camino</p>',delay:1500})
 		}
 	}
 
@@ -1881,9 +1897,37 @@ function checkCollision(x,y,a,b){
 }
 
 ////////////////////////////////////////////////////////////////
-function irInicio(){
-	location.reload()
+
+function ganarJuego(){
+	game_scene.style.visibility = 'hidden'
+	getE('home-scene').style.display = 'block'
+
+	getE('cargador').className = 'cargador-off'
+
+	ganar_mp3.play()
+	//final
+	setModal({
+		close:false,
+		title:'¡Felicidades!',
+		content:'<p>Has completado el juego con Juan el peatón. Ya eres un experto en normas de tránsito</p>',
+		button:true,
+		value:'aceptar',
+		orientation:'left',
+		action:'irInicio'
+	})
+}
+
+//terminar juego por el tiempo o porque perdió
+function endGame(){
+	
+}
+
+function verAyuda(){
+	setInstrucciones(false)
 }
 function getE(idname){
 	return document.getElementById(idname)
+}
+function irInicio(){
+	location.reload()
 }

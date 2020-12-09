@@ -575,6 +575,7 @@ var mision1 = {
 		var frase = '<p>Debes respetar los semáforos y esperar el momento indicado para cruzar.</p>'
 		//console.log("atropeyar")
 		avatar.classList.add('avatar-dead-1')
+		atropeyar_mp3.play()
 
 		//parar animaciones
 		for(var i = 0;i<mision1.carros.length;i++){

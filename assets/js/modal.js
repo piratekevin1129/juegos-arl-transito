@@ -34,7 +34,12 @@ function setModal(data){
 
 		getE('modal-button').style.display = 'block'
 		if(data.action){
-			getE('modal-button').setAttribute('onclick',data.action+"()")
+			if(data.params){
+				getE('modal-button').setAttribute('onclick',data.action+"("+data.params+")")
+			}else{
+				getE('modal-button').setAttribute('onclick',data.action+"()")
+			}
+			
 		}else{
 			getE('modal-button').setAttribute('onclick',"unsetModal(null)")
 		}
