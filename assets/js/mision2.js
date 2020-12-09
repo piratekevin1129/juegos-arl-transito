@@ -1,4 +1,10 @@
 var mision2 = {
+    calles:[
+		{w:1037,h:95,x:325,y:304},
+        {w:149,h:58,x:175,y:280},
+        {w:77,h:319,x:757,y:400},
+        {w:179,h:84,x:0,y:291}
+	],
     title: 'Prueba 2: Zona premarcada',
     test:String('<p>En la siguiente prueba deberás ir a donde indica la flecha. Asegúrate de cruzar sobre la zona premarcada para que los autos se detengan.</p><br /><h6>Objetivos:</h6><p class="modal-content-list">Camina con cuidado y evita circular por la calle.</p><p class="modal-content-list">Cruza la calle sobre la zona premarcada.</p>'),
     carros:[
@@ -191,7 +197,7 @@ var mision2 = {
 			frame:0,
 			animacion:null,
 			startAnimation: function(ind){
-				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},50)
+				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},40)
 			},
 			stopAnimation:function(ind){
 				clearInterval(mision2.carros[ind].animacion)
@@ -387,7 +393,7 @@ var mision2 = {
 			frame:0,
 			animacion:null,
 			startAnimation: function(ind){
-				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},50)
+				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},40)
 			},
 			stopAnimation:function(ind){
 				clearInterval(mision2.carros[ind].animacion)
@@ -583,7 +589,7 @@ var mision2 = {
 			frame:0,
 			animacion:null,
 			startAnimation: function(ind){
-				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},50)
+				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},40)
 			},
 			stopAnimation:function(ind){
 				clearInterval(mision2.carros[ind].animacion)
@@ -779,7 +785,7 @@ var mision2 = {
 			frame:0,
 			animacion:null,
 			startAnimation: function(ind){
-				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},50)
+				mision2.carros[ind].animacion = setInterval(function(){animacionCarro2(ind)},40)
 			},
 			stopAnimation:function(ind){
 				clearInterval(mision2.carros[ind].animacion)
@@ -789,6 +795,7 @@ var mision2 = {
     ],
     zebra:false,
     fallarMision:function(){
+        unsetPitos()
         var frase = '<p>Debes cruzar por la zona premarcada, ya que tienes prelación sobre los autos</p>'
         //console.log("atropeyar")
         avatar.classList.add('avatar-dead-2')
@@ -815,6 +822,7 @@ var mision2 = {
 		}},1)
     },
     aprobarMision:function(){
+        unsetPitos()
 		//parar animaciones
 		for(var i = 0;i<mision2.carros.length;i++){
 			mision2.carros[i].stopAnimation(i)

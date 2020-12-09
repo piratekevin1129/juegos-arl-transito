@@ -58,6 +58,10 @@
 	height: 20px;
 	background-color: rgba(255,0,0,0.5);
 }
+.icono-calle{
+	position: absolute;
+	background-color: rgba(0,0,255,0.5);
+}
 
 .icono-luz{background-color: #FFFFFF;}
 .icono-luz{

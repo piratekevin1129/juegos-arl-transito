@@ -18,6 +18,7 @@
     <link href="assets/css/mision2.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/mision3.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/mision4.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/mision5.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
 
     <!--Libreria spider-->
@@ -160,6 +161,7 @@
 <script src="assets/js/mision2.js"></script>
 <script src="assets/js/mision3.js"></script>
 <script src="assets/js/mision4.js"></script>
+<script src="assets/js/mision5.js"></script>
 <script src="assets/js/paredes_peaton.js"></script>
 <script src="assets/js/mobile.js"></script>
 <script src="assets/js/modal.js"></script>
@@ -168,6 +170,14 @@
 
 var underground_mp3 = null
 var boton_mp3 = null
+var atropeyar_mp3 = null
+var pito_largo_mp3 = null
+var pito1_mp3 = null
+var pito2_mp3 = null
+var pito3_mp3 = null
+var ganar_mp3 = null
+var pito_camion = null
+
 
 var animation_start = null
 window.onload = function(){
@@ -178,6 +188,28 @@ window.onload = function(){
     underground_mp3 = data
     setCargadorText(true)
     underground_mp3.addEventListener('ended',function(){underground_mp3.play()},false)
+
+    loadAudio({src:'assets/media/atropeyar.mp3',callBack:function(data){
+    atropeyar_mp3 = data
+    setCargadorText(true)
+    loadAudio({src:'assets/media/pito_largo.mp3',callBack:function(data){
+    pito_largo_mp3 = data
+    setCargadorText(true)
+    loadAudio({src:'assets/media/pito1.mp3',callBack:function(data){
+    pito1_mp3 = data
+    setCargadorText(true)
+    loadAudio({src:'assets/media/pito2.mp3',callBack:function(data){
+    pito2_mp3 = data
+    setCargadorText(true)
+    loadAudio({src:'assets/media/pito3.mp3',callBack:function(data){
+    pito3_mp3 = data
+    setCargadorText(true)
+    loadAudio({src:'assets/media/pito_camion.mp3',callBack:function(data){
+    pito_camion_mp3 = data
+    setCargadorText(true)
+    loadAudio({src:'assets/media/ganar.mp3',callBack:function(data){
+    ganar_mp3 = data
+    setCargadorText(true)
 
         spdLoadSprite({idname:'avatar-clip',autoplay:'off',callBack:function(){ 
         spdLoadSprite({idname:'explosion-clip',autoplay:'off',callBack:function(){ 
@@ -191,7 +223,15 @@ window.onload = function(){
             }})
         }})
         }})
-        
+    
+    }})
+    }})
+    }})
+    }})
+    }})
+    }})
+    }})
+
     }})
     }})
 }
@@ -208,7 +248,7 @@ function clickAudio(btn){
         toggle_audio = true
     }
 }
-var loader_cont = Math.round((100/5))
+var loader_cont = Math.round((100/12))
 var loader_counter = 1
 function setCargadorText(load,txt){
     var t = ''

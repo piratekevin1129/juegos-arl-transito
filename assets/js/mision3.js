@@ -1,4 +1,7 @@
 var mision3 = {
+    calles:[
+        {w:125,h:719,x:183,y:0}
+    ],
     title: 'Prueba 3: El puente peatonal',
     test:String('<p>En la siguiente prueba deberás ir a donde indica la flecha y cruzar por donde consideres más seguro (el puente o la calle).</p><br /><h6>Objetivos:</h6><p class="modal-content-list">Camina con cuidado y evita circular por la calle.</p><p class="modal-content-list">Consejo: No cruces por la calle si ves que el tráfico esta muy peligroso.</p>'),
     carros:[
@@ -95,15 +98,7 @@ var mision3 = {
         movex = 1
         movey = 2
         
-        //put avatar
-        avatar.style.top = avatar_data.top+'px'
-        avatar.style.left = avatar_data.left+'px'
-        piso.style.top = piso_data.top+'px'
-        piso.style.left = piso_data.left+'px'
-        paredes.style.top = piso_data.top+'px'
-        paredes.style.left = piso_data.left+'px'
-        piso_2.style.top = piso_data.top+'px'
-        piso_2.style.left = piso_data.left+'px'
+        updateStatus()
         
         ////preparar sentido 1////
 		direccion_left = true
@@ -188,10 +183,9 @@ var mision3 = {
                 },20)		
 			}
 		},20)
-
-
     },
     fallarMision:function(){
+        unsetPitos()
         var frase = '<p>Cuando el tráfico está muy peligroso debes usar el puente peatonal</p>'
         //console.log("atropeyar")
         avatar.classList.add('avatar-dead-3')
@@ -219,6 +213,7 @@ var mision3 = {
 		}},1)
     },
     aprobarMision:function(){
+        unsetPitos()
         //parar animaciones
         clearInterval(mision3.animacion_carros)
         mision3.animacion_carros = null

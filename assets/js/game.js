@@ -65,8 +65,7 @@ function setInstrucciones(start){
 			button:true,
 			value:'jugar',
 			orientation:'left',
-			action:'empezarJuego',
-			personaje:'off'
+			action:'empezarJuego'
 	    })
     }else{
     	setModal({
@@ -76,8 +75,7 @@ function setInstrucciones(start){
 			button:true,
 			value:'aceptar',
 			orientation:'left',
-			action:'seguirJuego',
-			personaje:'off'
+			action:'seguirJuego'
 	    })
     }
 }
@@ -164,7 +162,7 @@ function setGame(){
 		loadImage({url:'assets/images/fondo_peaton_2.png',callBack:function(data){
 			fondo_data.src2 = data.src
 			setFloor(1,true)
-			
+
 			////////AQUI EMPIEZA TODOO///////
 			
 			animation_start = setTimeout(function(){
@@ -197,6 +195,19 @@ var piso_data = {
 	height:0,
 	paredes:[],
 	elementos:[]
+}
+
+function updateStatus(){
+	//put avatar
+	avatar.style.top = avatar_data.top+'px'
+	avatar.style.left = avatar_data.left+'px'
+	avatar.className = 'avatar-'+avatar_data.direccion
+	piso.style.top = piso_data.top+'px'
+	piso.style.left = piso_data.left+'px'
+	paredes.style.top = piso_data.top+'px'
+	paredes.style.left = piso_data.left+'px'
+	piso_2.style.top = piso_data.top+'px'
+	piso_2.style.left = piso_data.left+'px'
 }
 
 function setFloor(floor,start){
@@ -262,10 +273,12 @@ function clearFloor(){
 }
 
 ///////////////MISIONES///////////////
-var m = 3
+var m = 1
 var animacion_mision = null
 function setMission(repeat){
 	var html = ''
+	var steps = 0
+
 	if(m==1){
 		//cuadrar posiciones del escenario y del personaje
 		avatar_data.left = 447
@@ -276,20 +289,24 @@ function setMission(repeat){
 		movex = 1
 		movey = 1
 
-		//put avatar
-		avatar.style.top = avatar_data.top+'px'
-		avatar.style.left = avatar_data.left+'px'
-		avatar.className = 'avatar-'+avatar_data.direccion
-		//set piso coords
-		piso.style.top = piso_data.top+'px'
-		piso.style.left = piso_data.left+'px'
-		paredes.style.top = piso_data.top+'px'
-		paredes.style.left = piso_data.left+'px'
-		piso_2.style.top = piso_data.top+'px'
-		piso_2.style.left = piso_data.left+'px'
+		updateStatus()
 
 		//poner elementos
 		if(!repeat){
+			//calles
+			for(i = 0;i<mision1.calles.length;i++){
+				var calle = document.createElement('div')
+				calle.className = 'icono-calle'
+				
+				calle.setAttribute('type','calle-m1')
+				calle.style.width = mision1.calles[i].w+'px'
+				calle.style.height = mision1.calles[i].h+'px'
+				calle.style.left = mision1.calles[i].x+'px'
+				calle.style.top = mision1.calles[i].y+'px'
+				piso.appendChild(calle)
+				piso_data.elementos.push(calle)
+			}
+
 			//carros
 			for(i = 0;i<mision1.carros.length;i++){
 				var car = document.createElement('div')
@@ -334,6 +351,7 @@ function setMission(repeat){
 			flecha.setAttribute('type','flecha')
 			piso.appendChild(flecha)
 			//piso_data.elementos.push(flecha)
+
 		}else{
 			//reubicar
 			for(i = 0;i<mision1.carros.length;i++){
@@ -363,20 +381,30 @@ function setMission(repeat){
 	}
 
 	else if(m==2){
-		//animar hasta que se vea la flecha
-		avatar_data.direccion = 'left'
-		avatar.className = 'avatar-'+avatar_data.direccion
-
 		if(!repeat){
 			//poner elementos
+			//calles
+			for(i = 0;i<mision2.calles.length;i++){
+				var calle = document.createElement('div')
+				calle.className = 'icono-calle'
+				
+				calle.setAttribute('type','calle-m2')
+				calle.style.width = mision2.calles[i].w+'px'
+				calle.style.height = mision2.calles[i].h+'px'
+				calle.style.left = mision2.calles[i].x+'px'
+				calle.style.top = mision2.calles[i].y+'px'
+				piso.appendChild(calle)
+				piso_data.elementos.push(calle)
+			}
+
 			//carros
 			for(i = 0;i<mision2.carros.length;i++){
 				var car = document.createElement('div')
 				car.className = 'carro-mision-2'
 				car.setAttribute('id',('carro'+mision2.carros[i].id+'-m2'))
 				car.setAttribute('type','carro-m2')
-				car.style.left = mision2.carros[i].animation_data[0].x+'px'
-				car.style.top = mision2.carros[i].animation_data[0].y+'px'
+				car.style.left = (mision2.carros[i].animation_data[0].x-(mision2.carros[i].size.w/2))+'px'
+				car.style.top = (mision2.carros[i].animation_data[0].y-(mision2.carros[i].size.h/2))+'px'
 				car.style.transform = 'rotate('+mision2.carros[i].animation_data[0].r+'deg)'
 				piso.appendChild(car)
 				piso_data.elementos.push(car)
@@ -413,23 +441,58 @@ function setMission(repeat){
 			zebra.setAttribute('type','zebra')
 			piso.appendChild(zebra)
 			piso_data.elementos.push(zebra)
-		}else{
-			avatar_data.left = 384
+
+			//mover escenario
+			/*avatar_data.left = 384
 			avatar_data.top = 230
 			piso_data.left = -340
 			piso_data.top = -185
 			movex = 2
 			movey = 2
+			updateStatus()*/
+
+			top_speed = 3
+			direccion_left = true
+			direccion_right = false
+			direccion_up = false
+			direccion_down = false
+			//animar hasta que se vea la flecha
+			avatar_data.direccion = 'left'
+			avatar.className = 'avatar-'+avatar_data.direccion
+			spdPlayAnimation({frame:1,stop:0,loop:true},0)
+			avatar_caminando = true
+
+			steps = 0
+			animacion_mision = setInterval(function(){
+				if(steps<100){
+					moveAvatar(true)
+					steps++
+				}else{
+					clearInterval(animacion_mision)
+					animacion_mision = null
+					
+					direccion_left = false
+					direccion_right = false
+					direccion_up = false
+					direccion_down = false
+					avatar_speed = 0
+					top_speed = 2
+
+					avatar_caminando = false
+					spdStopAnimation(0)
+					setMission2()
+				}
+			},20)
 			
-			//put avatar
-			avatar.style.top = avatar_data.top+'px'
-			avatar.style.left = avatar_data.left+'px'
-			piso.style.top = piso_data.top+'px'
-			piso.style.left = piso_data.left+'px'
-			paredes.style.top = piso_data.top+'px'
-			paredes.style.left = piso_data.left+'px'
-			piso_2.style.top = piso_data.top+'px'
-			piso_2.style.left = piso_data.left+'px'
+		}else{
+			avatar_data.left = 384
+			avatar_data.top = 230
+			piso_data.left = -70
+			piso_data.top = -185
+			movex = 2
+			movey = 2
+			
+			updateStatus()
 
 			//reubicar
 			for(i = 0;i<mision2.carros.length;i++){
@@ -440,38 +503,9 @@ function setMission(repeat){
 				car.className = 'carro-mision-2'//resetear clases
 				mision2.carros[i].frame = 0
 			}
+
+			setMission2()
 		}
-
-		//mover escenario
-		top_speed = 3
-		direccion_left = true
-		direccion_right = false
-		direccion_up = false
-		direccion_down = false
-		spdPlayAnimation({frame:1,stop:0,loop:true},0)
-		avatar_caminando = true
-
-		var steps = 0
-		animacion_mision = setInterval(function(){
-			if(steps<100){
-				moveAvatar(true)
-				steps++
-			}else{
-				clearInterval(animacion_mision)
-				animacion_mision = null
-				
-				direccion_left = false
-				direccion_right = false
-				direccion_up = false
-				direccion_down = false
-				avatar_speed = 0
-				top_speed = 2
-
-				avatar_caminando = false
-				spdStopAnimation(0)
-				setMission2()
-			}
-		},20)
 		
 		function setMission2(){
 			mision2.zebra = false
@@ -496,48 +530,44 @@ function setMission(repeat){
 
 	else if(m==3){
 		top_speed = 1
-		//animar hasta que se vea la flecha
+		
 		if(!repeat){
-			avatar_data.left = 148
-			avatar_data.top = 261
+			//temporal, descomentar para empezar en esta mision
+			/*avatar_data.left = 148
+			avatar_data.top = 300
 			avatar_data.direccion = 'left'
 			piso_data.left = 0
 			piso_data.top = -215
 			movex = 1
 			movey = 1
-			
-			//put avatar
-			avatar.style.top = avatar_data.top+'px'
-			avatar.style.left = avatar_data.left+'px'
-			avatar.className = 'avatar-'+avatar_data.direccion
-			piso.style.top = piso_data.top+'px'
-			piso.style.left = piso_data.left+'px'
-			paredes.style.top = piso_data.top+'px'
-			paredes.style.left = piso_data.left+'px'
-			piso_2.style.top = piso_data.top+'px'
-			piso_2.style.left = piso_data.left+'px'
+			updateStatus()*/
 		}else{
 			avatar_data.left = 148
-			avatar_data.top = 261
+			avatar_data.top = 300
 			avatar_data.direccion = 'left'
 			piso_data.left = 0
 			piso_data.top = -215
 			movex = 1
 			movey = 1
 			
-			//put avatar
-			avatar.style.top = avatar_data.top+'px'
-			avatar.style.left = avatar_data.left+'px'
-			avatar.className = 'avatar-'+avatar_data.direccion
-			piso.style.top = piso_data.top+'px'
-			piso.style.left = piso_data.left+'px'
-			paredes.style.top = piso_data.top+'px'
-			paredes.style.left = piso_data.left+'px'
-			piso_2.style.top = piso_data.top+'px'
-			piso_2.style.left = piso_data.left+'px'
+			updateStatus()
 		}
 
 		if(!repeat){
+			//calles
+			for(i = 0;i<mision3.calles.length;i++){
+				var calle = document.createElement('div')
+				calle.className = 'icono-calle'
+				
+				calle.setAttribute('type','calle-m3')
+				calle.style.width = mision3.calles[i].w+'px'
+				calle.style.height = mision3.calles[i].h+'px'
+				calle.style.left = mision3.calles[i].x+'px'
+				calle.style.top = mision3.calles[i].y+'px'
+				piso.appendChild(calle)
+				piso_data.elementos.push(calle)
+			}
+
 			//carros
 			for(i = 0;i<mision3.carros.length;i++){
 				var car = document.createElement('div')
@@ -585,17 +615,17 @@ function setMission(repeat){
 		}else{
 			//reubicar
 			for(i = 0;i<mision3.carros.length;i++){
-				mision3.carros[i].x = -50
-				mision3.carros[i].y = 0
-				mision3.carros[i].active = false
-				mision3.carros[i].frame = 0
-				mision3.carros[i].fragmento = 0
-				mision3.carros[i].duracion = 0
+				var car = getE(mision3.carros[i].name)
+				car.carros[i].x = -50
+				car.carros[i].y = 0
+				car.carros[i].active = false
+				car.carros[i].frame = 0
+				car.carros[i].fragmento = 0
+				car.carros[i].duracion = 0
 				
-				getE(mision3.carros[i].name).style.left = mision3.carros[i].x+'px'
-				getE(mision3.carros[i].name).style.top = mision3.carros[i].y+'px'
-				getE(mision3.carros[i].name).className = 'carro-mision-3'
-				
+				car.style.left = mision3.carros[i].x+'px'
+				car.style.top = mision3.carros[i].y+'px'
+				car.className = 'carro-mision-3'//resetear clases
 			}
 		}
 
@@ -615,8 +645,250 @@ function setMission(repeat){
 			})
 		},50)
 	}
+
+	else if(m==4){
+		if(!repeat){
+			//temporal, descomentar para empezar en esta mision
+			/*avatar_data.left = 151
+			avatar_data.top = 222
+			piso_data.left = 0
+			piso_data.top = 0
+			movex = 1
+			movey = 1
+			updateStatus()*/
+
+			//poner elementos
+			//calles
+			for(i = 0;i<mision4.calles.length;i++){
+				var calle = document.createElement('div')
+				calle.className = 'icono-calle'
+				
+				calle.setAttribute('type','calle-m4')
+				calle.style.width = mision4.calles[i].w+'px'
+				calle.style.height = mision4.calles[i].h+'px'
+				calle.style.left = mision4.calles[i].x+'px'
+				calle.style.top = mision4.calles[i].y+'px'
+				piso.appendChild(calle)
+				piso_data.elementos.push(calle)
+			}
+
+			//carros
+			for(i = 0;i<mision4.carros.length;i++){
+				var car = document.createElement('div')
+				car.className = 'carro-mision-4'
+				car.setAttribute('id',('carro'+mision4.carros[i].id+'-m4'))
+				car.setAttribute('type','carro-m4')
+				car.style.left = (mision4.carros[i].animation_data[0].x-(mision4.carros[i].size.w/2))+'px'
+				car.style.top = (mision4.carros[i].animation_data[0].y-(mision4.carros[i].size.h/2))+'px'
+				car.style.transform = 'rotate('+mision4.carros[i].animation_data[0].r+'deg)'
+				piso_2.appendChild(car)
+				piso_data.elementos.push(car)
+				mision4.carros[i].name = 'carro'+mision4.carros[i].id+'-m4'
+			}
+
+			//ppunto final
+			var punto = document.createElement('div')
+			punto.className = 'icono-punto'
+			punto.setAttribute('id','punto-mision-4')
+			punto.setAttribute('type','punto')
+			piso.appendChild(punto)
+			piso_data.elementos.push(punto)
+
+			var luz = document.createElement('div')
+			luz.className = 'icono-luz'
+			luz.setAttribute('id','luz-mision-4')
+			luz.setAttribute('type','luz')
+			piso.appendChild(luz)
+			//piso_data.elementos.push(luz)
+
+			//flecha
+			var flecha = document.createElement('div')
+			flecha.className = 'flecha'
+			flecha.setAttribute('id','flecha-mision-4')
+			flecha.setAttribute('type','flecha')
+			piso.appendChild(flecha)
+			//piso_data.elementos.push(flecha)
+
+			//animar hasta que se vea la flecha
+			avatar_data.direccion = 'right'
+			avatar.className = 'avatar-'+avatar_data.direccion
+			//mover escenario
+			direccion_left = false
+			direccion_right = true
+			direccion_up = false
+			direccion_down = false
+			spdPlayAnimation({frame:1,stop:0,loop:true},0)
+			avatar_caminando = true
+
+			steps = 0
+			animacion_mision = setInterval(function(){
+				if(steps<87){
+					moveAvatar(true)
+					steps++
+				}else{
+					clearInterval(animacion_mision)
+					animacion_mision = null
+					
+					direccion_left = false
+					direccion_right = false
+					direccion_up = false
+					direccion_down = false
+					avatar_speed = 0
+
+					avatar_caminando = false
+					spdStopAnimation(0)
+					setMission4()
+				}
+			},20)
+		
+		}else{
+			avatar_data.left = 312
+			avatar_data.top = 200
+			piso_data.left = 0
+			piso_data.top = 0
+			movex = 1
+			movey = 1
+			
+			updateStatus()
+
+			//reubicar
+			for(i = 0;i<mision4.carros.length;i++){
+				var car = getE(mision4.carros[i].name)
+				car.style.left = mision4.carros[i].animation_data[0].x+'px'
+				car.style.top = mision4.carros[i].animation_data[0].y+'px'
+				car.style.transform = 'rotate('+mision4.carros[i].animation_data[0].r+'deg)'
+				car.className = 'carro-mision-4'//resetear clases
+				mision4.carros[i].frame = 0
+			}
+
+			setMission4()
+		}
+
+		function setMission4(){
+			html = mision4.test
+		
+			animacion_mision = setTimeout(function(){
+				clearTimeout(animacion_mision)
+				animacion_mision = null
+
+				setModal({
+					close:false,
+					title:mision4.title,
+					content:html,
+					button:true,
+					value:'comenzar',
+					action:'startMission'
+				})
+			},50)
+		}
+	}
+
+	else if(m==5){
+		top_speed = 1
+
+		if(!repeat){
+			//temporal, descomentar para empezar en esta mision
+			avatar_data.left = 384
+			avatar_data.top = 215
+			piso_data.left = -350
+			piso_data.top = 0
+			movex = 2
+			movey = 1
+			updateStatus()
+
+			//poner elementos
+			//calles
+			for(i = 0;i<mision5.calles.length;i++){
+				var calle = document.createElement('div')
+				calle.className = 'icono-calle'
+				
+				calle.setAttribute('type','calle-m5')
+				calle.style.width = mision5.calles[i].w+'px'
+				calle.style.height = mision5.calles[i].h+'px'
+				calle.style.left = mision5.calles[i].x+'px'
+				calle.style.top = mision5.calles[i].y+'px'
+				piso.appendChild(calle)
+				piso_data.elementos.push(calle)
+			}
+
+			//carros
+			for(i = 0;i<mision5.carros.length;i++){
+				var car = document.createElement('div')
+				car.className = 'carro-mision-5'
+				car.setAttribute('id',('carro'+mision5.carros[i].id+'-m5'))
+				car.setAttribute('type','carro-m5')
+				car.style.left = (mision5.carros[i].animation_data[0].x-(mision5.carros[i].size.w/2))+'px'
+				car.style.top = (mision5.carros[i].animation_data[0].y-(mision5.carros[i].size.h/2))+'px'
+				car.style.transform = 'rotate('+mision5.carros[i].animation_data[0].r+'deg)'
+				piso_2.appendChild(car)
+				piso_data.elementos.push(car)
+				mision5.carros[i].name = 'carro'+mision5.carros[i].id+'-m5'
+			}
+
+			//ppunto final
+			var punto = document.createElement('div')
+			punto.className = 'icono-punto'
+			punto.setAttribute('id','punto-mision-5')
+			punto.setAttribute('type','punto')
+			piso.appendChild(punto)
+			piso_data.elementos.push(punto)
+
+			var luz = document.createElement('div')
+			luz.className = 'icono-luz'
+			luz.setAttribute('id','luz-mision-5')
+			luz.setAttribute('type','luz')
+			piso.appendChild(luz)
+			//piso_data.elementos.push(luz)
+
+			//flecha
+			var flecha = document.createElement('div')
+			flecha.className = 'flecha'
+			flecha.setAttribute('id','flecha-mision-5')
+			flecha.setAttribute('type','flecha')
+			piso.appendChild(flecha)
+			//piso_data.elementos.push(flecha)
+
+		}else{
+			avatar_data.left = 384
+			avatar_data.top = 215
+			piso_data.left = -350
+			piso_data.top = 0
+			movex = 2
+			movey = 1
+			
+			updateStatus()
+
+			//reubicar
+			for(i = 0;i<mision5.carros.length;i++){
+				var car = getE(mision5.carros[i].name)
+				car.style.left = mision5.carros[i].animation_data[0].x+'px'
+				car.style.top = mision5.carros[i].animation_data[0].y+'px'
+				car.style.transform = 'rotate('+mision5.carros[i].animation_data[0].r+'deg)'
+				car.className = 'carro-mision-5'//resetear clases
+				mision5.carros[i].frame = 0
+			}
+		}
+
+		html = mision5.test
+
+		animacion_mision = setTimeout(function(){
+			clearTimeout(animacion_mision)
+			animacion_mision = null
+
+			setModal({
+				close:false,
+				title:mision5.title,
+				content:html,
+				button:true,
+				value:'comenzar',
+				action:'startMission'
+			})
+		},50)
+		
+	}
 }
 function startMission(){
+	boton_mp3.play()
 	if(m==1){
 		unsetModal(function(){
 			//emmpeezar animaciones
@@ -630,6 +902,7 @@ function startMission(){
 				delay:3000
 			})
 			addEvents()
+			setPitos()
 		})
 	}else if(m==2){
 		unsetModal(function(){
@@ -640,9 +913,10 @@ function startMission(){
 			
 			setMensaje({
 				content:'<p>Debo cruzar por la zebra para no sufrir un accidente.</p>',
-				delay:3000
+				delay:2000
 			})
 			addEvents()
+			setPitos()
 		})
 	}else if(m==3){
 		unsetModal(function(){
@@ -655,6 +929,37 @@ function startMission(){
 				delay:2000
 			})
 			addEvents()
+			setPitos()
+		})
+	}else if(m==4){
+		unsetModal(function(){
+			//emmpeezar animaciones
+			for(i = 0;i<mision4.carros.length;i++){
+				mision4.carros[i].startAnimation(i)
+			}
+			
+			setMensaje({
+				content:'<p>No debo acercarme a las calles, hay muchos autos transitando.</p>',
+				delay:3000
+			})
+			addEvents()
+			setPitos()
+		})
+	}else if(m==5){
+		unsetModal(function(){
+			//pregunta
+			var html = '<div class="modal-content-preguntas">'
+			html+='<section onclick="responderPregunta(1)" class="modal-pregunta-option"><span>a)</span> Cruzar tranquilamente ya que los conductores deben estar atentos a la situación.</section>'
+			html+='<section onclick="responderPregunta(2)" class="modal-pregunta-option"><span>b)</span> Reducir el volumen de la música y mirar hacia ambos lados antes de cruzar.</section>'
+			html+='<section onclick="responderPregunta(3)" class="modal-pregunta-option"><span>c)</span> Cruzar rápidamente esquivando los carros.</section>'
+			html+='</div>'
+			setModal({
+				close:false,
+				title:'Si estás escuchando música en tu celular y necesitas cruzar la calle. ¿Qué deberías hacer?',
+				content:html,
+				orientation:'full',
+				button:false
+			})
 		})
 	}
 }
@@ -682,6 +987,22 @@ function repetirMission(){
 				unsetCargador2()
 			}})
 		})
+	}else if(m==4){
+		unsetModal(function(){
+			setCargador2({callBack:function(){
+				//poner todo a cuando terminó la primera
+				setMission(true)
+				unsetCargador2()
+			}})
+		})
+	}else if(m==5){
+		unsetModal(function(){
+			setCargador2({callBack:function(){
+				//poner todo a cuando terminó la primera
+				setMission(true)
+				unsetCargador2()
+			}})
+		})
 	}
 }
 function continueMission(){
@@ -694,6 +1015,12 @@ function continueMission(){
 	}else if(m==3){
 		//no comprobar nada, mostrar modal
 		mision3.aprobarMision()
+	}else if(m==4){
+		//no comprobar nada, mostrar modal
+		mision4.aprobarMision()
+	}else if(m==5){
+		//no comprobar nada, mostrar modal
+		mision5.aprobarMision()
 	}
 }
 function nextMission(){
@@ -704,18 +1031,85 @@ function nextMission(){
 			mision2.cleanMision()
 		}else if(m==3){
 			mision3.cleanMision()
+		}else if(m==4){
+			mision4.cleanMision()
+		}else if(m==5){
+			mision5.cleanMision()
 		}
 		m++
-		setMission(false)
+		if(m>5){
+			getE('cargador').className = 'cargador-on'
+
+			animation_start = setTimeout(function(){
+				clearInterval(animation_start)
+				animation_start = null
+
+				game_scene.style.visibility = 'hidden'
+				getE('home-scene').style.display = 'block'
+	
+				getE('cargador').className = 'cargador-off'
+
+				//final
+				setModal({
+					close:false,
+					title:'¡Felicidades!',
+					content:'<p>Has completado el juego con Juan el peatón. Ya eres un experto en normas de tránsito</p>',
+					button:true,
+					value:'aceptar',
+					orientation:'left',
+					action:'irInicio'
+				})
+			},1000)
+		}else{
+			setMission(false)
+		}
 	})
 }
 function cleanMission(walls){
 	piso.innerHTML = ''
 	piso_2.innerHTML = ''
+	top_speed = 2//dejar en default
 	
 	piso_data.elementos = []
 }
 
+animation_pitos = null
+function setPitos(){
+	var tipo = 0
+	if(m==1){
+		pitos = [pito1_mp3,pito2_mp3,pito3_mp3]
+	}else if(m==2){
+		pitos = [pito1_mp3,pito2_mp3,pito3_mp3]
+	}else if(m==3){
+		pitos = [pito1_mp3,pito2_mp3,pito3_mp3,pito_largo_mp3]
+	}else if(m==4){
+		pitos = [pito1_mp3,pito2_mp3,pito3_mp3,pito_largo_mp3,pito_camion_mp3]
+	}else if(m==5){
+		pitos = [pito1_mp3,pito2_mp3,pito3_mp3,pito_largo_mp3,pito_camion_mp3]
+	}
+
+	setPito()
+}
+function unsetPitos(){
+	clearTimeout(animation_pitos)
+	animation_pitos = null
+}
+
+var pitos = []
+function setPito(){
+	var tiempo_pito = parseInt(getRand(1,4))*1000
+	animation_pitos = setTimeout(function(){
+		clearTimeout(animation_pitos)
+		animation_pitos = null
+
+		pi = getRand(0,(pitos.length-1))
+		pitos[pi].currentTime = 0
+		pitos[pi].volume = 0.5
+		pitos[pi].play()
+
+		setPito()
+	},tiempo_pito)
+}
 
 ///////////EVENTOS DEL TECLADO///////////
 var avatar = getE('avatar')
@@ -1155,7 +1549,6 @@ function moveAvatar(back){
 
 function moveAvatar2(){
 	
-	
 }
 
 var partial_x = undefined
@@ -1186,9 +1579,6 @@ function preDetectCollision(){
 			//atropeyar
 			colli_obj.params[0].classList.add('carro-m1-chocado')
 			mision1.fallarMision()
-		}else if(colli_obj.type=='punto'){
-			//seguir con la misión
-			continueMission()
 		}else if(colli_obj.type=='carro-m2'){
 			//atropeyar
 			colli_obj.params[0].classList.add('carro-m2-chocado')
@@ -1197,10 +1587,21 @@ function preDetectCollision(){
 			//atropeyar
 			colli_obj.params[0].classList.add('carro-m3-chocado')
 			mision3.fallarMision()
+		}else if(colli_obj.type=='carro-m4'){
+			//atropeyar
+			colli_obj.params[0].classList.add('carro-m4-chocado')
+			mision4.fallarMision()
+		}else if(colli_obj.type=='carro-m5'){
+			//atropeyar
+			colli_obj.params[0].classList.add('carro-m5-chocado')
+			mision5.fallarMision()
 		}else if(colli_obj.type=='puente'){
 			//seguir con la misión
 			mision3.cruzando = true
 			mision3.pasarPuente()
+		}else if(colli_obj.type=='punto'){
+			//seguir con la misión
+			continueMission()
 		}
 	}else{
 		//si no hay colision miremos que no vaya a ser que esté tocando la zebra en la mision 2
@@ -1280,11 +1681,27 @@ function detectCollision(a,b){
 				rect_elemento = {
 					w:25,
 					h:25,
-					x:(rect.left-rect_parent.left)+5,
-					y:(rect.top-rect_parent.top)+5
+					x:(rect.left-rect_parent.left)+10,
+					y:(rect.top-rect_parent.top)+10
 				}
 			}else{
-
+				if(pre_type=='carro-m4'||pre_type=='carro-m5'){
+					//rect mas pequeño
+					var data_size = mision4.getArea(piso_data.elementos[c].id)
+					//console.log(data_size)
+					var ww = parseInt((piso_data.elementos[c].offsetWidth*data_size.areax)/100)
+					var hh = parseInt((piso_data.elementos[c].offsetHeight*data_size.areay)/100)
+					var restax = (100-data_size.areax)/2
+					var restay = (100-data_size.areay)/2
+					var xx = parseInt((piso_data.elementos[c].offsetWidth*restax)/100)
+					var yy = parseInt((piso_data.elementos[c].offsetHeight*restay)/100)
+					rect_elemento = {
+						w:ww,
+						h:hh,
+						x:(rect.left-rect_parent.left)+xx,
+						y:(rect.top-rect_parent.top)+yy
+					}
+				}
 			}
 			
 			if(
@@ -1308,6 +1725,12 @@ function detectCollision(a,b){
 			stop = true
 			params[0] = element
 		}else if(type=='carro-m3'){
+			stop = true
+			params[0] = element
+		}else if(type=='carro-m4'){
+			stop = true
+			params[0] = element
+		}else if(type=='carro-m5'){
 			stop = true
 			params[0] = element
 		}else if(type=='punto'){
@@ -1386,13 +1809,81 @@ function checkCollision(x,y,a,b){
 	}
 	
 	var type = ''
+	var element = null
+	var rect_element = null
 	var stop = null
+	
 	var params = []
+
+	if(!b){//si esta detras de camaras, no detectar colisiones con objetos
+		
+		for(var c = 0;c<piso_data.elementos.length;c++){
+			var rect = piso_data.elementos[c].getBoundingClientRect()
+			var pre_type = piso_data.elementos[c].getAttribute('type')
+			if(
+				pre_type=='calle-m1'||
+				pre_type=='calle-m2'||
+				pre_type=='calle-m3'||
+				pre_type=='calle-m4'||
+				pre_type=='calle-m5'
+			){
+				var rect_elemento = rect_elemento = {
+					w:piso_data.elementos[c].offsetWidth,
+					h:piso_data.elementos[c].offsetHeight,
+					x:(rect.left-rect_parent.left),
+					y:(rect.top-rect_parent.top)
+				}
+				
+				if(
+					(a_rect.x+avatar_data.subarea)>=rect_elemento.x&&
+					(a_rect.x-avatar_data.subarea)<=(rect_elemento.x+rect_elemento.w)&&
+					(a_rect.y+avatar_data.subarea)>=rect_elemento.y&&
+					(a_rect.y-avatar_data.subarea)<=(rect_elemento.y+rect_elemento.h)
+				){
+					//colision
+					type = piso_data.elementos[c].getAttribute('type')
+					element = piso_data.elementos[c]
+					collision = true
+					rect_element = rect_elemento
+				}
+			}
+		}
+
+		if(type=='calle-m1'){
+			//stop = null
+			params = []
+			type = ''
+			setMensaje({content:'<p>No debo desviarme del camino</p>',delay:1500})
+		}else if(type=='calle-m2'){
+			//stop = null
+			params = []
+			type = ''
+			setMensaje({content:'<p>No debo desviarme del camino</p>',delay:1500})
+		}else if(type=='calle-m3'){
+			//stop = null
+			params = []
+			type = ''
+			setMensaje({content:'<p>No debo desviarme del camino</p>',delay:1500})
+		}else if(type=='calle-m4'){
+			//stop = null
+			params = []
+			type = ''
+			setMensaje({content:'<p>Es muy peligroso circular por las calles</p>',delay:2000})
+		}else if(type=='calle-m5'){
+			//stop = null
+			params = []
+			type = ''
+			setMensaje({content:'<p>No debo desviarme del camino</p>',delay:1500})
+		}
+	}
 
 	return {collision:collision,stop:stop,params:params,type:type}
 }
 
 ////////////////////////////////////////////////////////////////
+function irInicio(){
+	location.reload()
+}
 function getE(idname){
 	return document.getElementById(idname)
 }

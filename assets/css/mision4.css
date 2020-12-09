@@ -1,0 +1,116 @@
+/****************MISION 4***********************/
+#mision4{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+#carro1-m4,#carro2-m4,#carro3-m4,#carro4-m4,#carro5-m4,#carro6-m4,#carro7-m4{
+	position: absolute;
+	width: 49px;
+	height: 49px;
+	margin: 0px;
+	padding: 0px;
+	background-repeat: no-repeat;
+	background-size: contain;
+    background-position: center;
+    box-sizing: border-box;
+}
+#carro2-m4{
+    width: 49px;
+	height: 49px;
+}
+#carro7-m4{
+    width: 148px;
+    height: 148px;
+}
+
+#carro1-m4{background-image: url(../images/peaton/mision4/carro1.png);}
+#carro2-m4{background-image: url(../images/peaton/mision4/carro2.png);}
+#carro3-m4{background-image: url(../images/peaton/mision4/carro3.png);}
+#carro4-m4{background-image: url(../images/peaton/mision4/carro4.png);}
+#carro5-m4{background-image: url(../images/peaton/mision4/carro5.png);}
+#carro6-m4{background-image: url(../images/peaton/mision4/carro6.png);}
+#carro7-m4{background-image: url(../images/peaton/mision4/carro7.png);}
+
+.carro-m4-chocado{
+    
+}
+
+#luz-mision-4{
+    top: 261px;
+    left: 731px;
+}
+
+#flecha-mision-4{
+    width: 45px;
+	height: 40px;
+	top: 256px;
+	left: 746px;
+	transform-origin: 0% center;
+	-webkit-transform-origin: 0% center;
+    -o-transform-origin: 0% center;
+    background-image: url(../images/peaton/mision4/flecha-4.svg);
+
+	animation-name: flecha-animacion;
+	-webkit-animation-name: flecha-animacion;
+}
+
+.avatar-dead-4 #avatar-clip{
+    visibility: hidden;
+}
+.avatar-dead-4 #avatar-atropeyado{
+    visibility: inherit !important;
+    animation-name: animacion-atropeya-4;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    -webkit-animation-name: animacion-atropeya-4;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: ease-out;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes animacion-atropeya-4{
+    0%{
+        top: 0px;
+        left: 0px;
+        transform: scale(1);
+		-webkit-transform: scale(1);
+		-o-transform: scale(1);
+    }
+    50%{
+        top: -11px;
+        left: 11px;
+        transform: scale(1.8);
+		-webkit-transform: scale(1.8);
+		-o-transform: scale(1.8);
+    }
+    75%{
+        top: -15px;
+        left: 15px;
+        transform: scale(1);
+		-webkit-transform: scale(1);
+		-o-transform: scale(1);
+    }
+    90%{
+        top: -18px;
+        left: 18px;
+        transform: scale(1.2);
+		-webkit-transform: scale(1.2);
+		-o-transform: scale(1.2);
+    }
+    100%{
+        top: -20px;
+        left: 20px;
+        transform: scale(1);
+		-webkit-transform: scale(1);
+		-o-transform: scale(1);
+    }
+}
+
+#punto-mision-4{
+	left: 728px;
+	top: 268px;
+}

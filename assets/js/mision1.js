@@ -1,4 +1,9 @@
 var mision1 = {
+	calles:[
+		{w:1363,h:95,x:0,y:302},
+		{w:1363,h:95,x:0,y:624},
+		{w:147,h:225,x:1215,y:398}
+	],
 	title:'Prueba 1: Cruzando la calle',
 	test:String('<p>En esta prueba deberás ir hacia donde indica la flecha y cruzando en el momento adecuado</p><br /><h6>Objetivos:</h6><p class="modal-content-list">Camina con cuidado y evita circular por la calle</p><p class="modal-content-list">Cruza la calle cuando el semáforo esté en rojo o perderás una oportunidad.<p>'),
 	animacion_semaforo:null,
@@ -566,6 +571,7 @@ var mision1 = {
 		mision1.animacion_semaforo = null
 	},
 	fallarMision:function(){
+		unsetPitos()
 		var frase = '<p>Debes respetar los semáforos y esperar el momento indicado para cruzar.</p>'
 		//console.log("atropeyar")
 		avatar.classList.add('avatar-dead-1')
@@ -593,6 +599,7 @@ var mision1 = {
 		}},1)
 	},
 	aprobarMision:function(){
+		unsetPitos()
 		//parar animaciones
 		for(var i = 0;i<mision1.carros.length;i++){
 			mision1.carros[i].stopAnimation(i)

@@ -20,8 +20,8 @@
 #carro4-m1{background-image: url(../images/peaton/mision1/carro4.png);}
 
 .carro-m1-chocado{
-	transition: transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s;
-	-webkit-transition: transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s;
+	transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out, -o-transform 0.2s ease-out;
+	-webkit-transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out, -o-transform 0.2s ease-out;
 
 	transform: rotate(-10deg);
 	-webkit-transform: rotate(-10deg);
@@ -231,7 +231,7 @@
 
 #punto-mision-1{
 	left: 702px;
-	top: 408px;
+	top: 413px;
 }
 
 #luz-mision-1{

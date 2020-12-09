@@ -22,15 +22,24 @@
 #carro5-m3{background-image: url(../images/peaton/mision3/carro5.png);}
 #carro6-m3{background-image: url(../images/peaton/mision3/carro6.png);}
 
+.carro-m3-chocado{
+    transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out, -o-transform 0.2s ease-out;
+	-webkit-transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out, -o-transform 0.2s ease-out;
+
+	transform: rotate(-10deg);
+	-webkit-transform: rotate(-10deg);
+	-o-transform: rotate(-10deg);
+}
+
 #luz-mision-3{
-    top: 220px;
+    top: 229px;
     left: 150px;
 }
 
 #flecha-mision-3{
     width: 40px;
 	height: 45px;
-	top: 191px;
+	top: 200px;
 	left: 144px;
 	transform-origin: center 100%;
 	-webkit-transform-origin: center 100%;
@@ -91,7 +100,7 @@
 
 #punto-mision-3{
 	left: 155px;
-	top: 230px;
+	top: 239px;
 }
 .puente{
     position: absolute;

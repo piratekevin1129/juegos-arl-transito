@@ -22,7 +22,7 @@ function prepareWindow(){
     if(ismobile){
         //game_height = game.offsetHeight-150
         //game_scene.style.height = game_height+'px'
-        top_speed = 2
+        //top_speed = 2
         avatar_aceleration = 2
     }
     if(isresponsive){

@@ -46,8 +46,9 @@ function setModal(data){
 	if(data.orientation!=null&&data.orientation!=undefined){
 		if(data.orientation=='left'){
 			getE('modal-box').className = 'modal-box-left'
-		}else{
-			getE('modal-box').className = ''
+		}else if(data.orientation=='full'){
+			console.log("full")
+			getE('modal-box').className = 'modal-box-full'
 		}
 	}else{
 		getE('modal-box').className = ''
@@ -79,12 +80,12 @@ function unsetModal(callBack){
 			getE('instrucciones-wrap').className = 'instrucciones-wrap-left-1'
 		}
 		
+		modal.style.top = '-1000px'
 		actual_page_inst = 1
 
 		if(callBack!=null){
 			callBack()
-		}
-		modal.style.top = '-1000px'
+		}		
 	},500)
 }
 
