@@ -36,6 +36,94 @@ function isMobileDevice() {
     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 };
 
+function xPercent(value){
+    var valor = piso_data.left+value
+    return valor
+}
+function xMiddle(){
+    return Math.floor((game_width/2)*10)/10
+}
+function yMiddle(){
+    return Math.floor((game_height/2)*10)/10
+}
+
+function yPercent(value){
+    var valor = piso_data.top+value
+    return valor
+}
+function toRight(){
+    var valor = 0
+    valor = 0-(fondo_data.width-game_width)
+    
+    return valor
+}
+function toBottom(){
+    var valor = 0
+    if(ismobile){
+        //valor = 0-((fondo_data.height-120)-game_height)
+        valor = 0-(fondo_data.height-game_height)
+    }else{
+        valor = 0-(fondo_data.height-game_height)
+    }
+    return valor
+}
+function getMoveX(restrict){
+    var movx = 1
+    var middle = Math.floor((game_width/2)*10)/10
+    if(restrict=='right'){
+        if(avatar_data.left>middle){
+            movx = 1
+        }else if(avatar_data.left==middle){
+            movx = 2
+        }else if(avatar_data.left<middle){
+            var dif = middle-avatar_data.left
+            avatar_data.left = middle
+            piso_data.left = (piso_data.left+dif)
+            movx = 2
+        }
+    }else if(restrict=='left'){
+        if(avatar_data.left<middle){
+            movx = 1
+        }else if(avatar_data.left==middle){
+            movx = 2
+        }else if(avatar_data.left>middle){
+            var dif = avatar_data.left-middle
+            avatar_data.left = middle
+            piso_data.left = (piso_data.left-dif)
+            movx = 2
+        }
+    }
+    return movx
+}
+function getMoveY(restrict){
+    var movy = 1
+    var middle = Math.floor((game_height/2)*10)/10
+    if(restrict=='top'){
+        if(avatar_data.top<middle){
+            movy = 1
+        }else if(avatar_data.top==middle){
+            movy = 2
+        }else if(avatar_data.top>middle){
+            var dif = avatar_data.top-middle
+            avatar_data.top = middle
+            piso_data.top = (piso_data.top-dif)
+            movy = 2
+        }
+    }else if(restrict=='bottom'){
+        if(avatar_data.top>middle){
+            movy = 1
+        }else if(avatar_data.top==middle){
+            movy = 2
+        }else if(avatar_data.top>middle){
+            var dif = middle-avatar_data.top
+            avatar_data.top = middle
+            piso_data.top = (piso_data.top+dif)
+            movy = 2
+        }
+    }
+    return movy
+}
+
 var key_pad_pressed = null
 var key_pad_pressed_code = 0
 function downKeyPad(e){

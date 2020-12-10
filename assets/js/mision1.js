@@ -1,7 +1,8 @@
 var mision1 = {
+	init:{x:1042,y:504},
 	calles:[
-		{w:1363,h:95,x:0,y:302},
-		{w:1363,h:95,x:0,y:624},
+		{w:1363,h:95,x:-1,y:302},
+		{w:611,h:95,x:751,y:624},
 		{w:147,h:225,x:1215,y:398}
 	],
 	title:'Prueba 1: Cruzando la calle',

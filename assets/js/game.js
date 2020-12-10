@@ -161,8 +161,9 @@ function setGame(){
 	loadImage({url:'assets/images/fondo_peaton_1.png',callBack:function(data){
 		fondo_data = {width:data.width,height:data.height,src:data.src,src2:''}
 		if(ismobile){
-			fondo_data.height = (fondo_data.height+120)
+			//fondo_data.height = (fondo_data.height+120)
 		}
+		console.log(fondo_data.height)
 		loadImage({url:'assets/images/fondo_peaton_2.png',callBack:function(data){
 			fondo_data.src2 = data.src
 			setFloor(1,true)
@@ -277,7 +278,7 @@ function clearFloor(){
 }
 
 ///////////////MISIONES///////////////
-var m = 1
+var m = 5
 var animacion_mision = null
 function setMission(repeat){
 	var html = ''
@@ -285,13 +286,13 @@ function setMission(repeat){
 
 	if(m==1){
 		//cuadrar posiciones del escenario y del personaje
-		avatar_data.left = 447
-		avatar_data.top = 289
 		avatar_data.direccion = 'left'
-		piso_data.left = -595
-		piso_data.top = -215
-		movex = 1
-		movey = 1
+		piso_data.left = toRight()
+		piso_data.top = toBottom()
+		avatar_data.left = xPercent(mision1.init.x)//este valor solo se saca con magia, preguntar al desarrollador
+		avatar_data.top = yPercent(mision1.init.y)
+		movex = getMoveX('right')
+		movey = getMoveY('bottom')
 
 		updateStatus()
 
@@ -447,13 +448,6 @@ function setMission(repeat){
 			piso_data.elementos.push(zebra)
 
 			//mover escenario
-			/*avatar_data.left = 384
-			avatar_data.top = 230
-			piso_data.left = -340
-			piso_data.top = -185
-			movex = 2
-			movey = 2
-			updateStatus()*/
 
 			top_speed = 3
 			direccion_left = true
@@ -468,7 +462,7 @@ function setMission(repeat){
 
 			steps = 0
 			animacion_mision = setInterval(function(){
-				if(steps<100){
+				if(steps<120){
 					moveAvatar(true)
 					steps++
 				}else{
@@ -489,12 +483,19 @@ function setMission(repeat){
 			},20)
 			
 		}else{
-			avatar_data.left = 384
+			avatar_data.left = xMiddle()
+			avatar_data.top = yMiddle()
+			piso_data.left = avatar_data.left-mision2.init.x
+			piso_data.top = avatar_data.top-mision2.init.y
+			movex = 2
+			movey = 2
+
+			/*avatar_data.left = 384
 			avatar_data.top = 230
 			piso_data.left = -70
 			piso_data.top = -185
 			movex = 2
-			movey = 2
+			movey = 2*/
 			
 			updateStatus()
 
@@ -537,22 +538,30 @@ function setMission(repeat){
 		
 		if(!repeat){
 			//temporal, descomentar para empezar en esta mision
+			/*avatar_data.direccion = 'left'
+			piso_data.left = 0
+			piso_data.top = toBottom()
+			avatar_data.left = xPercent(mision3.init.x)//este valor solo se saca con magia, preguntar al desarrollador
+			avatar_data.top = yPercent(mision3.init.y)
+			movex = getMoveX('left')
+			movey = getMoveY('bottom')
+			updateStatus()*/
+		}else{
+			avatar_data.direccion = 'left'
+			piso_data.left = 0
+			piso_data.top = toBottom()
+			avatar_data.left = xPercent(mision3.init.x)//este valor solo se saca con magia, preguntar al desarrollador
+			avatar_data.top = yPercent(mision3.init.y)
+			movex = getMoveX('left')
+			movey = getMoveY('bottom')
+
 			/*avatar_data.left = 148
 			avatar_data.top = 300
 			avatar_data.direccion = 'left'
 			piso_data.left = 0
 			piso_data.top = -215
 			movex = 1
-			movey = 1
-			updateStatus()*/
-		}else{
-			avatar_data.left = 148
-			avatar_data.top = 300
-			avatar_data.direccion = 'left'
-			piso_data.left = 0
-			piso_data.top = -215
-			movex = 1
-			movey = 1
+			movey = 1*/
 			
 			updateStatus()
 		}
@@ -620,12 +629,12 @@ function setMission(repeat){
 			//reubicar
 			for(i = 0;i<mision3.carros.length;i++){
 				var car = getE(mision3.carros[i].name)
-				car.carros[i].x = -50
-				car.carros[i].y = 0
-				car.carros[i].active = false
-				car.carros[i].frame = 0
-				car.carros[i].fragmento = 0
-				car.carros[i].duracion = 0
+				mision3.carros[i].x = -50
+				mision3.carros[i].y = 0
+				mision3.carros[i].active = false
+				mision3.carros[i].frame = 0
+				mision3.carros[i].fragmento = 0
+				mision3.carros[i].duracion = 0
 				
 				car.style.left = mision3.carros[i].x+'px'
 				car.style.top = mision3.carros[i].y+'px'
@@ -745,26 +754,33 @@ function setMission(repeat){
 				}
 			},20)
 		
-		}else{
-			avatar_data.left = 312
+		}else{		
+			avatar_data.direccion = 'left'
+			piso_data.left = 0
+			piso_data.top = 0
+			avatar_data.left = mision4.init.x
+			avatar_data.top = mision4.init.y
+			movex = getMoveX('left')
+			movey = 1
+			/*avatar_data.left = 312
 			avatar_data.top = 200
 			piso_data.left = 0
 			piso_data.top = 0
 			movex = 1
-			movey = 1
+			movey = 1*/
 			
 			updateStatus()
 
 			//reubicar
 			for(i = 0;i<mision4.carros.length;i++){
 				var car = getE(mision4.carros[i].name)
-				car.style.left = mision4.carros[i].animation_data[0].x+'px'
-				car.style.top = mision4.carros[i].animation_data[0].y+'px'
+				car.style.left = (mision4.carros[i].animation_data[0].x-(mision4.carros[i].size.w/2))+'px'
+				car.style.top = (mision4.carros[i].animation_data[0].y-(mision4.carros[i].size.h/2))+'px'
 				car.style.transform = 'rotate('+mision4.carros[i].animation_data[0].r+'deg)'
 				car.className = 'carro-mision-4'//resetear clases
 				mision4.carros[i].frame = 0
 			}
-
+			console.log(avatar_data)
 			setMission4()
 		}
 
@@ -792,13 +808,13 @@ function setMission(repeat){
 
 		if(!repeat){
 			//temporal, descomentar para empezar en esta mision
-			/*avatar_data.left = 384
-			avatar_data.top = 215
-			piso_data.left = -350
-			piso_data.top = 0
+			avatar_data.left = xMiddle()
+			avatar_data.top = mision5.init.y
+			piso_data.left = avatar_data.left-mision5.init.x
+			piso_data.top = 0	
 			movex = 2
 			movey = 1
-			updateStatus()*/
+			updateStatus()
 
 			//poner elementos
 			//calles
@@ -853,24 +869,24 @@ function setMission(repeat){
 			//piso_data.elementos.push(flecha)
 
 		}else{
-			avatar_data.left = 384
-			avatar_data.top = 215
-			piso_data.left = -350
-			piso_data.top = 0
+			avatar_data.left = xMiddle()
+			avatar_data.top = mision5.init.y
+			piso_data.left = avatar_data.left-mision5.init.x
+			piso_data.top = 0	
 			movex = 2
-			movey = 1
-			
+			movey = 1			
 			updateStatus()
 
 			//reubicar
 			for(i = 0;i<mision5.carros.length;i++){
 				var car = getE(mision5.carros[i].name)
-				car.style.left = mision5.carros[i].animation_data[0].x+'px'
-				car.style.top = mision5.carros[i].animation_data[0].y+'px'
+				car.style.left = (mision5.carros[i].animation_data[0].x-(mision5.carros[i].size.w/2))+'px'
+				car.style.top = (mision5.carros[i].animation_data[0].y-(mision5.carros[i].size.h/2))+'px'
 				car.style.transform = 'rotate('+mision5.carros[i].animation_data[0].r+'deg)'
 				car.className = 'carro-mision-5'//resetear clases
 				mision5.carros[i].frame = 0
 			}
+			console.log("reubicados")
 		}
 
 		html = mision5.test
@@ -1034,7 +1050,6 @@ function repetirMission(lose_life){
 			})
 		})
 	}
-	
 }
 function continueMission(){
 	if(m==1){
@@ -1092,7 +1107,6 @@ function cleanMission(walls){
 
 animation_pitos = null
 function setPitos(){
-	var tipo = 0
 	if(m==1){
 		pitos = [pito1_mp3,pito2_mp3,pito3_mp3]
 	}else if(m==2){
@@ -1114,7 +1128,13 @@ function unsetPitos(){
 
 var pitos = []
 function setPito(){
-	var tiempo_pito = parseInt(getRand(1,4))*1000
+	var tiempo_pito = 0
+	if(ismobile){
+		tiempo_pito = 4
+	}else{
+		tiempo_pito = parseInt(getRand(1,4))*1000
+	}
+	
 	animation_pitos = setTimeout(function(){
 		clearTimeout(animation_pitos)
 		animation_pitos = null
@@ -1174,12 +1194,15 @@ function addEvents(){
 		window.addEventListener('keyup',upTecla, false)
 		//document.addEventListener("visibilitychange", onchange);
 		//window.addEventListener('mouseout',focusOut, false)
-		animacion_colisiones = setInterval(preDetectCollision,20)
 	}
+	animacion_colisiones = setInterval(preDetectCollision,20)
 	avatar_moving = true
 	animacion_avatar = setInterval(moveAvatar,20)
 }
 function removeEvents(){
+	clearInterval(animacion_colisiones)
+	animacion_colisiones = null
+	
 	if(ismobile){
 		getE('keys-pad-cont').className = 'keys-pad-on keys-pad-hide'
 		getE('key-pad-left').removeEventListener('touchstart',downKeyPad,false)
@@ -1202,9 +1225,7 @@ function removeEvents(){
 	}else{
 		window.removeEventListener('keydown',downTecla, false)
 		window.removeEventListener('keyup',upTecla, false)
-		clearInterval(animacion_colisiones)
-		animacion_colisiones = null
-	}
+	}	
 
 	direccion_right = false
 	direccion_left = false

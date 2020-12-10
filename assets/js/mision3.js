@@ -1,4 +1,5 @@
 var mision3 = {
+    init:{x:148,y:515},
     calles:[
         {w:125,h:719,x:183,y:0}
     ],
@@ -91,12 +92,13 @@ var mision3 = {
         top_speed = 2
         var steps = 0
 
-        avatar_data.left = 112
+
+        /*avatar_data.left = 112
         avatar_data.top = 253
         piso_data.left = 0
         piso_data.top = -125
         movex = 1
-        movey = 2
+        movey = 2*/
         
         updateStatus()
         

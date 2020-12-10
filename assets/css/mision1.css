@@ -88,18 +88,16 @@
 	-webkit-animation-timing-function: linear;
 	-webkit-animation-iteration-count: 1;
 }
+
 .semaforo-start #semaforo-green{
 	animation-name: animacion-semaforo-green-1;
 	-webkit-animation-name: animacion-semaforo-green-1;
-}
-.semaforo-start #semaforo-yellow{
-	animation-name: animacion-semaforo-yellow-1;
-	-webkit-animation-name: animacion-semaforo-yellow-1;
 }
 .semaforo-start #semaforo-red{
 	animation-name: animacion-semaforo-red-1;
 	-webkit-animation-name: animacion-semaforo-red-1;
 }
+
 @keyframes animacion-semaforo-green-1{
 	0%{
 		background-color: #12B112;
@@ -220,6 +218,47 @@
 		-o-filter: blur(0px);
 	}
 }
+
+
+@keyframes animacion-semaforo-yellow-1-responsive{
+	0%{
+		background-color: #cccccc;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+	58%{
+		background-color: #cccccc;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+	60%{
+		background-color: #FFB100;
+		filter: blur(2px);
+		-webkit-filter: blur(2px);
+		-o-filter: blur(2px);
+	}
+	78%{
+		background-color: #FFB100;
+		filter: blur(2px);
+		-webkit-filter: blur(2px);
+		-o-filter: blur(2px);
+	}
+	80%{
+		background-color: #cccccc;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+	100%{
+		background-color: #cccccc;	
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-o-filter: blur(0px);
+	}
+}
+
 
 .semaforo-stop #semaforo-green,
 .semaforo-stop #semaforo-yellow,
