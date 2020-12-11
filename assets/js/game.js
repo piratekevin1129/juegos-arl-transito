@@ -278,7 +278,7 @@ function clearFloor(){
 }
 
 ///////////////MISIONES///////////////
-var m = 5
+var m = 1
 var animacion_mision = null
 function setMission(repeat){
 	var html = ''
@@ -546,27 +546,7 @@ function setMission(repeat){
 			movex = getMoveX('left')
 			movey = getMoveY('bottom')
 			updateStatus()*/
-		}else{
-			avatar_data.direccion = 'left'
-			piso_data.left = 0
-			piso_data.top = toBottom()
-			avatar_data.left = xPercent(mision3.init.x)//este valor solo se saca con magia, preguntar al desarrollador
-			avatar_data.top = yPercent(mision3.init.y)
-			movex = getMoveX('left')
-			movey = getMoveY('bottom')
 
-			/*avatar_data.left = 148
-			avatar_data.top = 300
-			avatar_data.direccion = 'left'
-			piso_data.left = 0
-			piso_data.top = -215
-			movex = 1
-			movey = 1*/
-			
-			updateStatus()
-		}
-
-		if(!repeat){
 			//calles
 			for(i = 0;i<mision3.calles.length;i++){
 				var calle = document.createElement('div')
@@ -609,6 +589,12 @@ function setMission(repeat){
 			luz.setAttribute('type','luz')
 			piso.appendChild(luz)
 			//piso_data.elementos.push(luz)
+			//luz 2 para el puente
+			var luz2 = document.createElement('div')
+			luz2.className = 'icono-luz'
+			luz2.setAttribute('id','luz-mision2-3')
+			luz2.setAttribute('type','luz')
+			piso.appendChild(luz2)			
 
 			//flecha
 			var flecha = document.createElement('div')
@@ -624,8 +610,25 @@ function setMission(repeat){
 			puente.setAttribute('type','puente')
 			piso.appendChild(puente)
 			piso_data.elementos.push(puente)
-
 		}else{
+			avatar_data.direccion = 'left'
+			piso_data.left = 0
+			piso_data.top = toBottom()
+			avatar_data.left = xPercent(mision3.init.x)//este valor solo se saca con magia, preguntar al desarrollador
+			avatar_data.top = yPercent(mision3.init.y)
+			movex = getMoveX('left')
+			movey = getMoveY('bottom')
+
+			/*avatar_data.left = 148
+			avatar_data.top = 300
+			avatar_data.direccion = 'left'
+			piso_data.left = 0
+			piso_data.top = -215
+			movex = 1
+			movey = 1*/
+			
+			updateStatus()
+
 			//reubicar
 			for(i = 0;i<mision3.carros.length;i++){
 				var car = getE(mision3.carros[i].name)
@@ -808,13 +811,13 @@ function setMission(repeat){
 
 		if(!repeat){
 			//temporal, descomentar para empezar en esta mision
-			avatar_data.left = xMiddle()
+			/*avatar_data.left = xMiddle()
 			avatar_data.top = mision5.init.y
 			piso_data.left = avatar_data.left-mision5.init.x
 			piso_data.top = 0	
 			movex = 2
-			movey = 1
-			updateStatus()
+			movey = 1		
+			updateStatus()*/
 
 			//poner elementos
 			//calles
@@ -1783,7 +1786,7 @@ function detectCollision(a,b){
 	return {collision:collision,stop:stop,params:params,type:type}
 }
 
-//para paredes
+//para paredes y calles
 function checkCollision(x,y,a,b){
 	var collision = false
 	//comprobar colision

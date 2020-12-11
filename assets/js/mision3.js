@@ -92,7 +92,6 @@ var mision3 = {
         top_speed = 2
         var steps = 0
 
-
         /*avatar_data.left = 112
         avatar_data.top = 253
         piso_data.left = 0
@@ -235,6 +234,7 @@ var mision3 = {
 		})
     },
     cleanMision:function(){
+        mision3.cruzando = false
         cleanMission()
     },
     

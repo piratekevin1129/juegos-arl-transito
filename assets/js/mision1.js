@@ -6,7 +6,7 @@ var mision1 = {
 		{w:147,h:225,x:1215,y:398}
 	],
 	title:'Prueba 1: Cruzando la calle',
-	test:String('<p>En esta prueba deberás ir hacia donde indica la flecha y cruzando en el momento adecuado</p><br /><h6>Objetivos:</h6><p class="modal-content-list">Camina con cuidado y evita circular por la calle</p><p class="modal-content-list">Cruza la calle cuando el semáforo esté en rojo o perderás una oportunidad.<p>'),
+	test:String('<p>En esta prueba deberás ir hacia donde indica la flecha y cruzando en el momento adecuado</p><br /><h6>Objetivos:</h6><p class="modal-content-list">Camina con cuidado y evita circular por la calle</p><p class="modal-content-list">Cruza la calle cuando el semáforo esté en rojo y los autos no puedan avanzar.<p>'),
 	animacion_semaforo:null,
 	carros:[
 		{
@@ -608,7 +608,7 @@ var mision1 = {
 		}
 		mision1.stopAnimationSemaforo()
 
-		var frase = '<p>Debes esperar a que el semáforo esté en rojo para poder cruzar.</p>'
+		var frase = '<p>Debes esperar a que el semáforo de esté en rojo, de este modo los autos no podrán avanzar y podrás cruzar la calle sin problemas.</p>'
 		setModal({
 			close:false,
 			title:'¡Muy bien Juan!',

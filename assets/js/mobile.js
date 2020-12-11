@@ -40,16 +40,15 @@ function xPercent(value){
     var valor = piso_data.left+value
     return valor
 }
+function yPercent(value){
+    var valor = piso_data.top+value
+    return valor
+}
 function xMiddle(){
     return Math.floor((game_width/2)*10)/10
 }
 function yMiddle(){
     return Math.floor((game_height/2)*10)/10
-}
-
-function yPercent(value){
-    var valor = piso_data.top+value
-    return valor
 }
 function toRight(){
     var valor = 0
