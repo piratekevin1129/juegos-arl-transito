@@ -34,7 +34,12 @@
 #carro7-m5{background-image: url(../images/peaton/mision4/carro7.png);}
 
 .carro-m5-chocado{
-    
+    transform: rotate(-10deg) !important;
+    -webkit-transform: rotate(-10deg) !important;
+    -o-transform: rotate(-10deg) !important;
+
+    transition: transform 0.3s ease-out;
+    -webkit-transition: transform 0.3s ease-out;
 }
 
 #luz-mision-5{

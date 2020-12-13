@@ -1307,7 +1307,7 @@ var mision4 = {
 		{
 			id:7,
             name:'',
-            size:{w:148,h:148,areax:80,areay:26},
+            size:{w:148,h:148,areax:80,areay:20},
 			animation_data:[
 				{x:-87.5,y:327.7,r:0},
 				{x:-58.7,y:325.9,r:0},
